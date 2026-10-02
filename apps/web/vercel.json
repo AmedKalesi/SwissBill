@@ -2,12 +2,12 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "vite",
   "buildCommand": "pnpm --filter @flinkli/shared build && pnpm --filter @flinkli/web build",
-  "outputDirectory": "apps/web/dist",
+  "outputDirectory": "dist",
   "installCommand": "pnpm install --frozen-lockfile",
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://flinkli-api.up.railway.app/api/:path*"
+      "destination": "https://api-production-4b8e.up.railway.app/api/:path*"
     },
     {
       "source": "/((?!api/).*)",
