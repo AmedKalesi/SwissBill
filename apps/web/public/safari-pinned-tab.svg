@@ -1,0 +1,7 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Safari pinned-tab mask icon. Safari renders this as a single-colour
+       silhouette (the `color` attribute on the <link>), so it must be pure
+       black geometry with no gradients or fills other than black. -->
+  <path d="M17 13.5A2.5 2.5 0 0 1 19.5 11h18.2L47 20.3V48.5A2.5 2.5 0 0 1 44.5 51h-25A2.5 2.5 0 0 1 17 48.5v-35Z" fill="#000000"/>
+  <path d="M31.4 36.2h2.2v2.6h2.6v2.2h-2.6v2.6h-2.2v-2.6h-2.6v-2.2h2.6v-2.6Z" fill="#ffffff"/>
+</svg>
