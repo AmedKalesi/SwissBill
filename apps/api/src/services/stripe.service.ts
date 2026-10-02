@@ -3,7 +3,7 @@
  */
 import Stripe from "stripe";
 import { env } from "../config/env.js";
-import type { Plan } from "@swissbill/shared";
+import type { Plan } from "@flinkli/shared";
 
 let stripeClient: Stripe | null = null;
 

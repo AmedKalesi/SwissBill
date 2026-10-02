@@ -7,7 +7,7 @@ import {
   quoteSchema,
   quoteStatusSchema,
   signatureSchema,
-} from "@swissbill/shared";
+} from "@flinkli/shared";
 import { prisma } from "../db/prisma.js";
 import { AppError } from "../plugins/error-handler.js";
 import { generateInvoiceNumber } from "../services/invoice.service.js";

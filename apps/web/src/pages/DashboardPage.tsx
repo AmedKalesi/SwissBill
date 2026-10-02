@@ -3,7 +3,7 @@ import { currencyTotals, invoiceNumber, isLate, isReceivable } from "@/lib/invoi
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import type { Customer, Invoice } from "@swissbill/shared";
+import type { Customer, Invoice } from "@flinkli/shared";
 import { api } from "@/lib/api";
 import { formatDate, formatMoney } from "@/lib/format";
 import { Card, CardHeader } from "@/components/ui/Card";

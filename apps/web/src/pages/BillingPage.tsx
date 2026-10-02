@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
-import type { Plan, PlanUsage, Subscription } from "@swissbill/shared";
-import { PLAN_PRICES } from "@swissbill/shared";
+import type { Plan, PlanUsage, Subscription } from "@flinkli/shared";
+import { PLAN_PRICES } from "@flinkli/shared";
 import { api } from "@/lib/api";
 import { formatMoney } from "@/lib/format";
 import { Button } from "@/components/ui/Button";

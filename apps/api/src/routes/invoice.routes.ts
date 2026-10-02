@@ -7,7 +7,7 @@ import {
   invoiceStatusSchema,
   signatureSchema,
   twintPaymentSchema,
-} from "@swissbill/shared";
+} from "@flinkli/shared";
 import { prisma } from "../db/prisma.js";
 import { AppError } from "../plugins/error-handler.js";
 import {

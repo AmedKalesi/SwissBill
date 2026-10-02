@@ -8,7 +8,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import type { User } from "@swissbill/shared";
+import type { User } from "@flinkli/shared";
 import { api, getToken, setToken } from "@/lib/api";
 
 interface AuthResponse {

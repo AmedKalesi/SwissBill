@@ -2,7 +2,7 @@
  * Şirket profili rotaları (fatura kesen taraf).
  */
 import type { FastifyInstance } from "fastify";
-import { companySchema } from "@swissbill/shared";
+import { companySchema } from "@flinkli/shared";
 import { prisma } from "../db/prisma.js";
 import { AppError } from "../plugins/error-handler.js";
 import { enforceCompanyLimit } from "../services/invoice.service.js";

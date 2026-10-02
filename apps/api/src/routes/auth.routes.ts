@@ -3,7 +3,7 @@
  */
 import type { FastifyInstance } from "fastify";
 import bcrypt from "bcryptjs";
-import { loginSchema, registerSchema } from "@swissbill/shared";
+import { loginSchema, registerSchema } from "@flinkli/shared";
 import { prisma } from "../db/prisma.js";
 import { AppError } from "../plugins/error-handler.js";
 

@@ -2,7 +2,7 @@
  * Gider (Expense) rotaları: CRUD + kategori/özet.
  */
 import type { FastifyInstance } from "fastify";
-import { expenseSchema } from "@swissbill/shared";
+import { expenseSchema } from "@flinkli/shared";
 import { prisma } from "../db/prisma.js";
 import { AppError } from "../plugins/error-handler.js";
 

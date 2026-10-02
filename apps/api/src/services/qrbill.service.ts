@@ -7,7 +7,7 @@
  * Referans: https://www.paymentstandards.ch/
  */
 import QRCode from "qrcode";
-import { formatQrrReference } from "@swissbill/shared";
+import { formatQrrReference } from "@flinkli/shared";
 
 export interface QrBillAddress {
   name: string;

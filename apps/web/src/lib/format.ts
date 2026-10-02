@@ -1,4 +1,4 @@
-import { DEFAULT_CURRENCY } from "@swissbill/shared";
+import { DEFAULT_CURRENCY } from "@flinkli/shared";
 
 export function formatMoney(
   amount: number | string,

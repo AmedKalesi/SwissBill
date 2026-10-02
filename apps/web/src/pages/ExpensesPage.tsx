@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
-import type { Expense } from "@swissbill/shared";
+import type { Expense } from "@flinkli/shared";
 import { api } from "@/lib/api";
 import { formatDate, formatMoney } from "@/lib/format";
 import { Button } from "@/components/ui/Button";

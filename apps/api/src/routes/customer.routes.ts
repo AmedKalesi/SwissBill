@@ -2,7 +2,7 @@
  * Müşteri CRUD rotaları.
  */
 import type { FastifyInstance } from "fastify";
-import { customerSchema } from "@swissbill/shared";
+import { customerSchema } from "@flinkli/shared";
 import { prisma } from "../db/prisma.js";
 import { AppError } from "../plugins/error-handler.js";
 import { enforceCustomerLimit } from "../services/invoice.service.js";

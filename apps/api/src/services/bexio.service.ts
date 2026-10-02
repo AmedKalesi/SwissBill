@@ -12,7 +12,7 @@
  *
  * Referans: https://docs.bexio.com/
  */
-import type { AccountingProvider } from "@swissbill/shared";
+import type { AccountingProvider } from "@flinkli/shared";
 
 /** Bexio OAuth yetkilendirme tabanı. */
 const BEXIO_AUTH_URL = "https://auth.bexio.com/realms/bexio/protocol/openid-connect/auth";

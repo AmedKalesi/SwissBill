@@ -8,7 +8,7 @@ import {
   type ReactNode,
 } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import type { Company } from "@swissbill/shared";
+import type { Company } from "@flinkli/shared";
 import { api } from "@/lib/api";
 import { useAuth } from "@/features/auth/AuthContext";
 

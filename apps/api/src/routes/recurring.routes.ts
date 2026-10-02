@@ -2,7 +2,7 @@
  * Tekrarlayan fatura rotaları: CRUD + manuel çalıştırma.
  */
 import type { FastifyInstance } from "fastify";
-import { recurringInvoiceSchema } from "@swissbill/shared";
+import { recurringInvoiceSchema } from "@flinkli/shared";
 import { prisma } from "../db/prisma.js";
 import { AppError } from "../plugins/error-handler.js";
 import {
@@ -11,7 +11,7 @@ import {
   generateInvoiceFromRecurring,
   runDueRecurringInvoices,
 } from "../services/recurring.service.js";
-import type { RecurringFrequency } from "@swissbill/shared";
+import type { RecurringFrequency } from "@flinkli/shared";
 
 export async function recurringRoutes(app: FastifyInstance): Promise<void> {
   app.addHook("preHandler", app.authenticate);

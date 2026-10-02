@@ -6,7 +6,7 @@
  */
 import type { FastifyInstance } from "fastify";
 import { randomBytes } from "node:crypto";
-import { signatureSchema } from "@swissbill/shared";
+import { signatureSchema } from "@flinkli/shared";
 import { prisma } from "../db/prisma.js";
 import { AppError } from "../plugins/error-handler.js";
 

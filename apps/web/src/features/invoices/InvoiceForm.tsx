@@ -7,7 +7,7 @@ import {
   type Customer,
   type Invoice,
   type InvoiceItemInput,
-} from "@swissbill/shared";
+} from "@flinkli/shared";
 import { businessDate } from "@/lib/invoice-tools";
 import { api, ApiRequestError } from "@/lib/api";
 import { formatMoney, toDateInputValue } from "@/lib/format";

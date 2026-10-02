@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import type { Invoice } from "@swissbill/shared";
+import type { Invoice } from "@flinkli/shared";
 import { Card, CardHeader } from "@/components/ui/Card";
 import { businessDate, currencyTotals, daysUntilDue, invoiceNumber, isLate, isReceivable } from "@/lib/invoice-tools";
 import { formatMoney, formatDate } from "@/lib/format";

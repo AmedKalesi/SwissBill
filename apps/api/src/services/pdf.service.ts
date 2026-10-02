@@ -3,7 +3,7 @@
  * QR-fatura (QR-Rechnung) ile birlikte tam fatura PDF'i oluşturur.
  */
 import PDFDocument from "pdfkit";
-import { formatQrrReference } from "@swissbill/shared";
+import { formatQrrReference } from "@flinkli/shared";
 import type { QrBillData } from "./qrbill.service.js";
 import { generateQrCodeDataUrl } from "./qrbill.service.js";
 

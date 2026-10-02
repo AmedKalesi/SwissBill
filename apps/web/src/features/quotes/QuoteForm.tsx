@@ -6,7 +6,7 @@ import {
   type Customer,
   type InvoiceItemInputLike,
   type Quote,
-} from "@swissbill/shared";
+} from "@flinkli/shared";
 import { api } from "@/lib/api";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";

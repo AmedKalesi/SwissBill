@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { InvoiceStatus } from "@swissbill/shared";
+import type { InvoiceStatus } from "@flinkli/shared";
 
 type Tone = "gray" | "blue" | "green" | "red" | "amber";
 

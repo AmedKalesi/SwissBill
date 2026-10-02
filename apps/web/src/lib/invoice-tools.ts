@@ -1,4 +1,4 @@
-import type { Invoice } from "@swissbill/shared";
+import type { Invoice } from "@flinkli/shared";
 
 export type InvoiceRecord = Pick<Invoice, "id" | "invoiceNumber" | "number" | "customer" | "issueDate" | "dueDate" | "status" | "total" | "currency" | "createdAt">;
 export const invoiceNumber = (invoice: Pick<Invoice, "number" | "invoiceNumber">) => invoice.number || invoice.invoiceNumber;

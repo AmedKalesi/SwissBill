@@ -5,7 +5,7 @@ import type {
   AccountingIntegration,
   AccountingProvider,
   AccountingSyncResult,
-} from "@swissbill/shared";
+} from "@flinkli/shared";
 import { api, ApiRequestError } from "@/lib/api";
 import { formatDate } from "@/lib/format";
 import { Button } from "@/components/ui/Button";

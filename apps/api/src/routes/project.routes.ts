@@ -2,7 +2,7 @@
  * Proje CRUD rotaları.
  */
 import type { FastifyInstance } from "fastify";
-import { projectSchema } from "@swissbill/shared";
+import { projectSchema } from "@flinkli/shared";
 import { prisma } from "../db/prisma.js";
 import { AppError } from "../plugins/error-handler.js";
 

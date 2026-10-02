@@ -14,9 +14,10 @@
 import {
   calculateInvoiceTotals,
   generateQrrReference,
+  type CalculatedLine,
   type InvoiceItemInput,
   type RecurringFrequency,
-} from "@swissbill/shared";
+} from "@flinkli/shared";
 import { prisma } from "../db/prisma.js";
 import {
   createInvoiceWithNumber,
@@ -204,7 +205,7 @@ export async function generateInvoiceFromRecurring(
             notes: recurring.notes ?? null,
             sentAt: recurring.autoSend ? new Date() : null,
             items: {
-              create: totals.lines.map((line, index) => ({
+              create: totals.lines.map((line: CalculatedLine, index: number) => ({
                 description: line.description,
                 quantity: line.quantity,
                 unitPrice: line.unitPrice,

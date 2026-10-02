@@ -2,7 +2,7 @@
  * Abonelik (billing) rotaları: plan bilgisi, checkout, portal, webhook.
  */
 import type { FastifyInstance } from "fastify";
-import { planSchema, PLAN_PRICES } from "@swissbill/shared";
+import { planSchema, PLAN_PRICES } from "@flinkli/shared";
 import { env } from "../config/env.js";
 import { prisma } from "../db/prisma.js";
 import { AppError } from "../plugins/error-handler.js";
