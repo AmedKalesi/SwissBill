@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-surface-50 text-surface-900 antialiased;
+    font-family:
+      "Inter",
+      ui-sans-serif,
+      system-ui,
+      -apple-system,
+      "Segoe UI",
+      sans-serif;
+  }
+
+  /* Dark theme: soft charcoal/navy tones instead of pure black so the
+     financial data stays comfortable to read for long sessions. */
+  .dark body {
+    @apply bg-surface-900 text-surface-100;
+  }
+
+  /* Brand-tinted text selection so even the small details match the logo. */
+  ::selection {
+    @apply bg-brand-600 text-white;
+  }
+}
+
+@layer base {
+  body { line-height: 1.6; }
+  h1, h2, h3 { letter-spacing: -0.025em; }
+  button, input, select, textarea { font: inherit; }
+  button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+  :focus-visible { outline: 2px solid #d52b1e; outline-offset: 3px; }
+}
+@layer components {
+  .app-shell table thead { background: #f6f7f9; }
+  .app-shell table th { padding-top: 0.875rem; padding-bottom: 0.875rem; white-space: nowrap; }
+  .app-shell table td { padding-top: 1rem; padding-bottom: 1rem; }
+  .app-shell table tbody tr { transition: background-color 150ms; }
+  .app-shell table tbody tr:hover { background: #fafbfc; }
+  .app-shell table td:last-child { font-variant-numeric: tabular-nums; }
+
+  .dark .app-shell table thead { background: #1d2939; }
+  .dark .app-shell table tbody tr:hover { background: #1d2939; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}

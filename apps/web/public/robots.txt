@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+Allow: /qr-generator
+Disallow: /dashboard
+Disallow: /customers
+Disallow: /invoices
+Disallow: /projects
+Disallow: /reports
+Disallow: /company
+Disallow: /billing
+Disallow: /login
+Disallow: /register
+
+Sitemap: https://flinkli.ch/sitemap.xml

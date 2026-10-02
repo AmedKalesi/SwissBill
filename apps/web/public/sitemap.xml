@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+>
+  <url>
+    <loc>https://flinkli.ch/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://flinkli.ch/" />
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://flinkli.ch/fr" />
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://flinkli.ch/it" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://flinkli.ch/en" />
+  </url>
+  <url>
+    <loc>https://flinkli.ch/qr-generator</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://flinkli.ch/qr-generator" />
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://flinkli.ch/fr/qr-generator" />
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://flinkli.ch/it/qr-generator" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://flinkli.ch/en/qr-generator" />
+  </url>
+</urlset>
