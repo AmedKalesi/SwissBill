@@ -1,0 +1,67 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e23b2e"/>
+      <stop offset="55%" stop-color="#d52b1e"/>
+      <stop offset="100%" stop-color="#b81f14"/>
+    </linearGradient>
+    <linearGradient id="sheet" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#fdeceb"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="28" flood-color="#420a06" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <rect width="1080" height="1080" fill="url(#bg)"/>
+  <circle cx="960" cy="140" r="260" fill="#ffffff" opacity="0.06"/>
+  <circle cx="120" cy="980" r="220" fill="#ffffff" opacity="0.05"/>
+
+  <!-- Brand lockup -->
+  <g transform="translate(88 84)">
+    <rect width="72" height="72" rx="18" fill="#ffffff" opacity="0.18"/>
+    <g transform="translate(4 4)">
+      <path d="M17 13.5A2.5 2.5 0 0 1 19.5 11h18.2L47 20.3V48.5A2.5 2.5 0 0 1 44.5 51h-25A2.5 2.5 0 0 1 17 48.5v-35Z" fill="url(#sheet)"/>
+      <path d="M37.7 11 47 20.3h-6.8A2.5 2.5 0 0 1 37.7 17.8V11Z" fill="#f3b6b0"/>
+      <rect x="22.5" y="24" width="15" height="2.4" rx="1.2" fill="#d8a7a2"/>
+      <rect x="22.5" y="29.4" width="10" height="2.4" rx="1.2" fill="#e6c3bf"/>
+      <path d="M31.4 36.2h2.2v2.6h2.6v2.2h-2.6v2.6h-2.2v-2.6h-2.6v-2.2h2.6v-2.6Z" fill="#d52b1e"/>
+    </g>
+    <text x="92" y="50" font-family="Inter, 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="40" font-weight="700" letter-spacing="-1" fill="#ffffff">flinkli</text>
+  </g>
+
+  <!-- Headline -->
+  <text x="88" y="330" font-family="Inter, 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="82" font-weight="800" letter-spacing="-2.5" fill="#ffffff">Rechnungen in</text>
+  <text x="88" y="424" font-family="Inter, 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="82" font-weight="800" letter-spacing="-2.5" fill="#ffffff">Sekunden.</text>
+
+  <text x="88" y="500" font-family="Inter, 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="36" font-weight="500" fill="#ffe4e1">QR-Rechnung nach Swiss Payment</text>
+  <text x="88" y="548" font-family="Inter, 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="36" font-weight="500" fill="#ffe4e1">Standards 2026 — für Freelancer.</text>
+
+  <!-- Feature card -->
+  <g transform="translate(88 620)" filter="url(#cardShadow)">
+    <rect width="904" height="300" rx="32" fill="#ffffff"/>
+    <g transform="translate(48 56)">
+      <circle cx="26" cy="26" r="26" fill="#fde5e3"/>
+      <path d="M14 26.5l8 8 16-17" stroke="#d52b1e" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="76" y="36" font-family="Inter, 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="30" font-weight="600" fill="#101828">QR-Rechnung in 30 Sekunden</text>
+    </g>
+    <g transform="translate(48 128)">
+      <circle cx="26" cy="26" r="26" fill="#fde5e3"/>
+      <path d="M14 26.5l8 8 16-17" stroke="#d52b1e" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="76" y="36" font-family="Inter, 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="30" font-weight="600" fill="#101828">Kunden &amp; Rechnungen an einem Ort</text>
+    </g>
+    <g transform="translate(48 200)">
+      <circle cx="26" cy="26" r="26" fill="#fde5e3"/>
+      <path d="M14 26.5l8 8 16-17" stroke="#d52b1e" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="76" y="36" font-family="Inter, 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="30" font-weight="600" fill="#101828">Mahnwesen &amp; Wiederkehrendes automatisch</text>
+    </g>
+  </g>
+
+  <!-- CTA -->
+  <g transform="translate(88 968)">
+    <rect width="440" height="76" rx="38" fill="#ffffff"/>
+    <text x="220" y="49" text-anchor="middle" font-family="Inter, 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="30" font-weight="700" fill="#d52b1e">Jetzt kostenlos starten</text>
+  </g>
+  <text x="560" y="1016" font-family="Inter, 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="30" font-weight="600" fill="#ffe4e1">flinkli.ch</text>
+</svg>
