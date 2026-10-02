@@ -1,6 +1,8 @@
 # ============================================
-# flinkli API — Production Dockerfile (Railway)
+# flinkli API — Production Dockerfile (Railway, repo root)
 # ============================================
+# Bu Dockerfile repo kökünde durur; Railway kök Dockerfile'ı
+# Railpack yerine otomatik olarak tercih eder. API servisi buradan derlenir.
 FROM node:22-alpine AS base
 # Prisma, alpine üzerinde OpenSSL 3.x gerektirir (schema engine için)
 RUN apk add --no-cache openssl libc6-compat
