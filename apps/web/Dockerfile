@@ -17,7 +17,14 @@ RUN pnpm --filter @flinkli/shared build \
 
 # --- Runtime stage: serve the static build with nginx ---
 FROM nginx:1.27-alpine AS runner
-COPY apps/web/nginx.conf /etc/nginx/conf.d/default.conf
+
+# nginx.conf içindeki ${PORT} placeholder'ını çalışma anında doldur.
+# Railway PORT env verir; yoksa 80 kullan.
+ENV PORT=80
+COPY apps/web/nginx.conf /etc/nginx/templates/default.conf.template
 COPY --from=build /app/apps/web/dist /usr/share/nginx/html
+
+# nginx:alpine resmi, /etc/nginx/templates/*.template dosyalarını
+# başlangıçta envsubst ile /etc/nginx/conf.d/ altına render eder.
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
