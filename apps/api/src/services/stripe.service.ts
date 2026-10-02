@@ -55,17 +55,29 @@ export async function createCheckoutSession(params: {
   const stripe = getStripe();
   if (!stripe) return null;
 
-  // NOT: `payment_method_types` gönderilmez. Stripe hesabında "Managed Payments"
+  // NOT 1: `payment_method_types` gönderilmez. Stripe hesabında "Managed Payments"
   // varsayılan olarak etkin olduğunda bu parametre reddedilir
   // ("Unsupported parameter: payment_method_types"). Ödeme yöntemleri Stripe
   // tarafından otomatik yönetilir.
-  const session = await stripe.checkout.sessions.create({
+  //
+  // NOT 2: Managed Payments etkinken Stripe, satır kalemindeki ürün için
+  // `tax_code` zorunlu kılar. Abonelik fiyatlarımız (Flinkli Pro/Business)
+  // hizmet satışı olduğundan ve vergi kodunu Stripe Dashboard'dan yönetmek
+  // istediğimizden, bu oturum için Managed Payments'ı açıkça kapatıyoruz.
+  // Aksi halde Checkout şu hatayla 400 döner:
+  // "Invalid line_items[0]: the product tax code is missing."
+  // `managed_payments` bu SDK sürümünün tip tanımlarında yok; Stripe API'si
+  // tarafından desteklendiği için tip güvenli bir cast ile gönderiyoruz.
+  const sessionParams = {
     customer: params.customerId,
     mode: "subscription",
     line_items: [{ price: params.priceId, quantity: 1 }],
     success_url: params.successUrl,
     cancel_url: params.cancelUrl,
-  });
+    managed_payments: { enabled: false },
+  } as unknown as Stripe.Checkout.SessionCreateParams;
+
+  const session = await stripe.checkout.sessions.create(sessionParams);
 
   return session.url;
 }
