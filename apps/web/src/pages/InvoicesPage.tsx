@@ -8,6 +8,8 @@ import { formatDate, formatMoney } from "@/lib/format";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { InvoiceStatusBadge } from "@/components/ui/Badge";
+import { EmptyState } from "@/components/ui/EmptyState";
+import { useToast } from "@/components/ui/Toast";
 
 import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
@@ -16,10 +18,10 @@ import { useCompany } from "@/features/company/CompanyContext";
 
 export function InvoicesPage() {
   const { t, i18n } = useTranslation();
+  const toast = useToast();
   const queryClient = useQueryClient();
   const { activeCompanyId } = useCompany();
   const [params, setParams] = useSearchParams();
-  const [actionError, setActionError] = useState<string | null>(null);
   const [downloading, setDownloading] = useState<string | null>(null);
   const search = params.get("q") ?? "";
   const status = params.get("status") ?? "";
@@ -28,7 +30,10 @@ export function InvoicesPage() {
   const updateFilter = (key: string, value: string) => {
     setParams((previous) => { const next = new URLSearchParams(previous); if (value) next.set(key, value); else next.delete(key); return next; }, { replace: true });
   };
-  const onActionError = (error: unknown) => setActionError(error instanceof ApiRequestError ? error.message : t("common.error"));
+  const onActionError = (error: unknown) =>
+    toast.error(
+      error instanceof ApiRequestError ? error.message : t("toasts.genericError"),
+    );
   const locale = i18n.resolvedLanguage ?? "de-CH";
 
   const invoicesQuery = useQuery({
@@ -46,18 +51,18 @@ export function InvoicesPage() {
     mutationFn: ({ id, status }: { id: string; status: InvoiceStatus }) =>
       api.patch<Invoice>(`/invoices/${id}/status`, { status }),
     onError: onActionError,
-    onMutate: () => setActionError(null),
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: ["invoices"] });
+      toast.success(t("toasts.saved"));
     },
   });
 
   const deleteMutation = useMutation({
     mutationFn: (id: string) => api.delete<void>(`/invoices/${id}`),
     onError: onActionError,
-    onMutate: () => setActionError(null),
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: ["invoices"] });
+      toast.success(t("toasts.deleted"));
     },
   });
 
@@ -78,7 +83,6 @@ export function InvoicesPage() {
   };
 
   const handleDownloadPdf = async (invoice: Invoice) => {
-    setActionError(null);
     setDownloading(invoice.id);
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL ?? "/api"}/invoices/${invoice.id}/pdf`, { headers: { Authorization: `Bearer ${localStorage.getItem("flinkli.token") ?? ""}` } });
@@ -87,7 +91,7 @@ export function InvoicesPage() {
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a"); link.href = url; link.download = `${invoiceNumber(invoice)}.pdf`; link.click();
       setTimeout(() => URL.revokeObjectURL(url), 1000);
-    } catch { setActionError(t("workspace.downloadError")); }
+    } catch { toast.error(t("workspace.downloadError")); }
     finally { setDownloading(null); }
   };
 
@@ -110,7 +114,6 @@ export function InvoicesPage() {
           <Select name="invoice-sort" label={t("workspace.sort")} value={sort} onChange={(event) => updateFilter("sort", event.target.value)} options={[{value: "newest", label: t("workspace.newest")}, {value: "oldest", label: t("workspace.oldest")}, {value: "due", label: t("workspace.dueFirst")}]} />
           <Button variant="secondary" onClick={exportCsv} disabled={!visibleInvoices.length || invoicesQuery.isError || invoicesQuery.isLoading}>{t("workspace.exportCsv")}</Button>
         </div>
-        {actionError && <p role="alert" className="mb-4 rounded-xl bg-red-50 p-3 text-sm text-swiss-red">{actionError}</p>}
         {!invoicesQuery.isLoading && !invoicesQuery.isError && <div className="mb-4 flex flex-wrap items-center justify-between gap-2 text-xs text-surface-500 dark:text-surface-400"><span role="status">{t("workspace.results", {count: visibleInvoices.length, total: invoices.length})}</span>{(search || status || currency || sort !== "newest") && <button type="button" onClick={() => setParams({})} className="font-semibold text-brand-600">{t("workspace.reset")}</button>}</div>}
         {invoicesQuery.isLoading ? (
           <p className="py-6 text-center text-sm text-surface-500 dark:text-surface-400">
@@ -119,9 +122,27 @@ export function InvoicesPage() {
         ) : invoicesQuery.isError ? (
           <div role="alert" className="py-8 text-center"><p className="mb-3 text-sm text-swiss-red">{t("common.error")}</p><Button variant="secondary" onClick={() => void invoicesQuery.refetch()}>{t("workspace.retry")}</Button></div>
         ) : visibleInvoices.length === 0 ? (
-          <p className="py-6 text-center text-sm text-surface-500 dark:text-surface-400">
-            {invoices.length ? t("workspace.noResults") : t("invoices.empty")}
-          </p>
+          invoices.length ? (
+            <EmptyState
+              title={t("workspace.noResults")}
+              description={t("workspace.reset")}
+              action={
+                <Button variant="secondary" onClick={() => setParams({})}>
+                  {t("workspace.reset")}
+                </Button>
+              }
+            />
+          ) : (
+            <EmptyState
+              title={t("invoices.empty")}
+              description={t("toasts.emptyDescription")}
+              action={
+                <Link to="/invoices/new">
+                  <Button>{t("invoices.new")}</Button>
+                </Link>
+              }
+            />
+          )
         ) : (
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-surface-200 dark:divide-surface-700 text-sm">

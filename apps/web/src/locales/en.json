@@ -535,11 +535,13 @@
       "setup": "To first invoice"
     },
     "trust": {
-      "qrStandard": "Swiss QR-bill standard (SPC 2026)",
-      "vat": "All Swiss VAT rates built in",
-      "languages": "6 languages out of the box",
-      "swissHosted": "Swiss-hosted data",
-      "pdf": "Print-ready PDF invoices",
+      "noCard": "No credit card required",
+      "swissHosted": "Hosted in Switzerland",
+      "cancelAnytime": "Cancel anytime",
+      "qrStandard": "Swiss QR-bill standard",
+      "vat": "Swiss VAT rates",
+      "languages": "Invoices in 6 languages",
+      "pdf": "PDF & e-mail delivery",
       "reminders": "Automatic payment reminders"
     },
     "billing": {
@@ -670,6 +672,26 @@
         "q": "Do you offer support?",
         "a": "Yes. As an early-stage product, support comes directly from the founder. Write to us and you will get a real answer, usually within one business day."
       }
+    },
+    "backToTop": "Back to top",
+    "how": {
+      "badge": "How it works",
+      "title": "Your first invoice in three steps",
+      "subtitle": "From setup to payment in minutes. No accounting knowledge needed.",
+      "steps": {
+        "profile": {
+          "title": "Set up your company",
+          "desc": "Enter your company details and VAT rate once. Your QR-IBAN is validated automatically."
+        },
+        "invoice": {
+          "title": "Create the invoice",
+          "desc": "Pick a customer, add line items. The QR-bill and PDF are ready instantly."
+        },
+        "getPaid": {
+          "title": "Get paid",
+          "desc": "Your customer scans the QR code and pays. Track the payment from your dashboard."
+        }
+      }
     }
   },
   "errors": {
@@ -678,7 +700,11 @@
     "notFound": "Not found",
     "unauthorized": "Unauthorized",
     "network": "Network error. Please try again.",
-    "validation": "Please check the form for errors."
+    "validation": "Please check the form for errors.",
+    "boundaryTitle": "Something went wrong",
+    "boundaryDescription": "An unexpected error occurred while rendering this page. You can try again or reload the app.",
+    "boundaryRetry": "Try again",
+    "boundaryReload": "Reload app"
   },
   "workspace": {
     "collections": "Collection overview",
@@ -714,5 +740,13 @@
   "theme": {
     "switchToDark": "Switch to dark mode",
     "switchToLight": "Switch to light mode"
+  },
+  "toasts": {
+    "sessionExpired": "Your session has expired. Please sign in again.",
+    "saved": "Saved",
+    "deleted": "Deleted",
+    "genericError": "Something went wrong. Please try again.",
+    "emptyTitle": "Nothing here yet",
+    "emptyDescription": "Create a new record to get started."
   }
 }

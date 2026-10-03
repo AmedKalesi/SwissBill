@@ -9,7 +9,7 @@ import {
   type ReactNode,
 } from "react";
 import type { User } from "@flinkli/shared";
-import { api, getToken, setToken } from "@/lib/api";
+import { api, getToken, setToken, UNAUTHORIZED_EVENT } from "@/lib/api";
 
 interface AuthResponse {
   token: string;
@@ -83,6 +83,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setToken(null);
     setUser(null);
   }, [queryClient]);
+
+  // When any API call returns 401, the token has expired or been revoked.
+  // Drop the session so ProtectedRoute redirects to /login instead of leaving
+  // the UI in a broken half-authenticated state.
+  useEffect(() => {
+    const handleUnauthorized = () => logout();
+    window.addEventListener(UNAUTHORIZED_EVENT, handleUnauthorized);
+    return () =>
+      window.removeEventListener(UNAUTHORIZED_EVENT, handleUnauthorized);
+  }, [logout]);
 
   const value = useMemo<AuthContextValue>(
     () => ({

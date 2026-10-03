@@ -11,6 +11,8 @@ import { AuthProvider, useAuth } from "@/features/auth/AuthContext";
 import { CompanyProvider } from "@/features/company/CompanyContext";
 import { ThemeProvider } from "@/features/theme/ThemeContext";
 import { AppLayout } from "@/components/AppLayout";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
+import { ToastProvider } from "@/components/ui/Toast";
 import { LoginPage } from "@/pages/LoginPage";
 import { RegisterPage } from "@/pages/RegisterPage";
 import { DashboardPage } from "@/pages/DashboardPage";
@@ -78,12 +80,14 @@ function PublicOnlyRoute({ children }: { children: ReactNode }) {
 
 export function App() {
   return (
-    <ThemeProvider>
-      <QueryClientProvider client={queryClient}>
-        <Router>
-          <AuthProvider>
-            <CompanyProvider>
-            <Routes>
+    <ErrorBoundary>
+      <ThemeProvider>
+        <QueryClientProvider client={queryClient}>
+          <ToastProvider>
+            <Router>
+              <AuthProvider>
+                <CompanyProvider>
+                <Routes>
             <Route
               path="/login"
               element={
@@ -126,12 +130,14 @@ export function App() {
               <Route path="/billing" element={<BillingPage />} />
             </Route>
 
-              <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
-            </CompanyProvider>
-          </AuthProvider>
-        </Router>
-      </QueryClientProvider>
-    </ThemeProvider>
+                  <Route path="*" element={<Navigate to="/" replace />} />
+                </Routes>
+                </CompanyProvider>
+              </AuthProvider>
+            </Router>
+          </ToastProvider>
+        </QueryClientProvider>
+      </ThemeProvider>
+    </ErrorBoundary>
   );
 }

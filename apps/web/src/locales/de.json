@@ -535,11 +535,13 @@
       "setup": "Bis zur ersten Rechnung"
     },
     "trust": {
-      "qrStandard": "Schweizer QR-Rechnung (SPC 2026)",
-      "vat": "Alle Schweizer MWST-Sätze integriert",
-      "languages": "6 Sprachen ab Werk",
-      "swissHosted": "In der Schweiz gehostete Daten",
-      "pdf": "Druckfertige PDF-Rechnungen",
+      "noCard": "Keine Kreditkarte nötig",
+      "swissHosted": "In der Schweiz gehostet",
+      "cancelAnytime": "Jederzeit kündbar",
+      "qrStandard": "Schweizer QR-Rechnungsstandard",
+      "vat": "Schweizer MWST-Sätze",
+      "languages": "Rechnungen in 6 Sprachen",
+      "pdf": "PDF- & E-Mail-Versand",
       "reminders": "Automatische Zahlungserinnerungen"
     },
     "billing": {
@@ -670,6 +672,26 @@
         "q": "Bieten Sie Support an?",
         "a": "Ja. Als junges Produkt kommt der Support direkt vom Gründer. Schreiben Sie uns und Sie erhalten eine echte Antwort, meist innerhalb eines Werktags."
       }
+    },
+    "backToTop": "Nach oben",
+    "how": {
+      "badge": "So funktioniert’s",
+      "title": "Ihre erste Rechnung in drei Schritten",
+      "subtitle": "Von der Einrichtung bis zur Zahlung in Minuten. Kein Buchhaltungswissen nötig.",
+      "steps": {
+        "profile": {
+          "title": "Firma einrichten",
+          "desc": "Firmendaten und MWST-Satz einmal eingeben. Die QR-IBAN wird automatisch geprüft."
+        },
+        "invoice": {
+          "title": "Rechnung erstellen",
+          "desc": "Kunde wählen, Positionen hinzufügen. QR-Rechnung und PDF sind sofort bereit."
+        },
+        "getPaid": {
+          "title": "Bezahlt werden",
+          "desc": "Ihr Kunde scannt den QR-Code und zahlt. Verfolgen Sie die Zahlung im Dashboard."
+        }
+      }
     }
   },
   "errors": {
@@ -678,7 +700,11 @@
     "notFound": "Nicht gefunden",
     "unauthorized": "Nicht autorisiert",
     "network": "Netzwerkfehler. Bitte versuchen Sie es erneut.",
-    "validation": "Bitte überprüfen Sie das Formular auf Fehler."
+    "validation": "Bitte überprüfen Sie das Formular auf Fehler.",
+    "boundaryTitle": "Etwas ist schiefgelaufen",
+    "boundaryDescription": "Beim Anzeigen dieser Seite ist ein unerwarteter Fehler aufgetreten. Sie können es erneut versuchen oder die App neu laden.",
+    "boundaryRetry": "Erneut versuchen",
+    "boundaryReload": "App neu laden"
   },
   "workspace": {
     "collections": "Forderungsübersicht",
@@ -714,5 +740,13 @@
   "theme": {
     "switchToDark": "Zum dunklen Modus wechseln",
     "switchToLight": "Zum hellen Modus wechseln"
+  },
+  "toasts": {
+    "sessionExpired": "Ihre Sitzung ist abgelaufen. Bitte melden Sie sich erneut an.",
+    "saved": "Gespeichert",
+    "deleted": "Gelöscht",
+    "genericError": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.",
+    "emptyTitle": "Noch keine Einträge",
+    "emptyDescription": "Erstellen Sie einen neuen Eintrag, um zu beginnen."
   }
 }

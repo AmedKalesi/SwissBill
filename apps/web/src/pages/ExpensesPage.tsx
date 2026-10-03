@@ -7,6 +7,8 @@ import { formatDate, formatMoney } from "@/lib/format";
 import { Button } from "@/components/ui/Button";
 import { Card, CardHeader } from "@/components/ui/Card";
 import { Modal } from "@/components/ui/Modal";
+import { EmptyState } from "@/components/ui/EmptyState";
+import { useToast } from "@/components/ui/Toast";
 import { ExpenseForm } from "@/features/expenses/ExpenseForm";
 import { useCompany } from "@/features/company/CompanyContext";
 
@@ -19,6 +21,7 @@ interface ExpenseSummary {
 
 export function ExpensesPage() {
   const { t } = useTranslation();
+  const toast = useToast();
   const queryClient = useQueryClient();
   const { activeCompanyId } = useCompany();
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -47,6 +50,10 @@ export function ExpensesPage() {
       void queryClient.invalidateQueries({ queryKey: ["expenses"] });
       void queryClient.invalidateQueries({ queryKey: ["expenses-summary"] });
       setDeleting(null);
+      toast.success(t("toasts.deleted"));
+    },
+    onError: () => {
+      toast.error(t("toasts.genericError"));
     },
   });
 
@@ -98,7 +105,11 @@ export function ExpensesPage() {
         {expensesQuery.isLoading ? (
           <p className="text-sm text-surface-500 dark:text-surface-400">{t("common.loading")}</p>
         ) : expenses.length === 0 ? (
-          <p className="text-sm text-surface-500 dark:text-surface-400">{t("expenses.empty")}</p>
+          <EmptyState
+            title={t("expenses.empty")}
+            description={t("toasts.emptyDescription")}
+            action={<Button onClick={openCreate}>{t("expenses.new")}</Button>}
+          />
         ) : (
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-surface-200 dark:divide-surface-700 text-sm">

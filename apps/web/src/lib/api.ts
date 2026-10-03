@@ -1,6 +1,13 @@
 const API_BASE = import.meta.env.VITE_API_URL ?? "/api";
 const TOKEN_KEY = "flinkli.token";
 
+/**
+ * Event dispatched when the API rejects a request with 401 Unauthorized.
+ * The auth layer listens for this to clear the session and redirect to login,
+ * so an expired/invalid token never leaves the UI in a broken half-authed state.
+ */
+export const UNAUTHORIZED_EVENT = "flinkli:unauthorized";
+
 export function getToken(): string | null {
   return localStorage.getItem(TOKEN_KEY);
 }
@@ -68,6 +75,16 @@ export async function apiRequest<T>(
       error?: { code?: string; message?: string; details?: unknown };
     };
     const details = envelope.error;
+
+    // A 401 means the token is missing/expired. Clear it and notify listeners
+    // so the app can drop the session and route the user back to login.
+    if (response.status === 401) {
+      setToken(null);
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new CustomEvent(UNAUTHORIZED_EVENT));
+      }
+    }
+
     throw new ApiRequestError(
       details?.message ?? `Request failed with status ${response.status}`,
       response.status,

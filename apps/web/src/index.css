@@ -127,6 +127,58 @@
   .card-lift:hover {
     transform: translateY(-4px);
   }
+
+  /* Cursor-following spotlight for the hero. The element sets --spot-x/--spot-y
+     from a pointer handler; without JS the layer simply stays invisible. */
+  .hero-spotlight {
+    background: radial-gradient(
+      600px circle at var(--spot-x, 50%) var(--spot-y, 0%),
+      rgba(213, 43, 30, 0.14),
+      transparent 62%
+    );
+    transition: opacity 400ms ease;
+  }
+  .dark .hero-spotlight {
+    background: radial-gradient(
+      600px circle at var(--spot-x, 50%) var(--spot-y, 0%),
+      rgba(226, 59, 46, 0.22),
+      transparent 62%
+    );
+  }
+
+  /* Animated gradient border for highlighted cards (pricing "popular", CTAs).
+     Uses a masked pseudo-element so the border can animate independently of
+     the card background. */
+  .gradient-border {
+    position: relative;
+  }
+  .gradient-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(120deg, #e23b2e, #f7aaa3, #d52b1e, #e23b2e);
+    background-size: 300% 300%;
+    animation: flinkli-border-pan 6s linear infinite;
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* Subtle dotted texture used behind dark CTA bands. */
+  .bg-dot-grid {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  /* Smooth scroll for in-page anchor links (e.g. "how it works"). */
+  .scroll-smooth {
+    scroll-behavior: smooth;
+  }
 }
 
 @keyframes flinkli-float {
@@ -153,6 +205,11 @@
 @keyframes flinkli-marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
+}
+
+@keyframes flinkli-border-pan {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }

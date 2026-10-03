@@ -1,3 +1,4 @@
+import { useCallback, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Logo } from "@/components/Logo";
@@ -15,6 +16,8 @@ import { IntegrationsSection } from "@/components/IntegrationsSection";
 import { ComparisonSection } from "@/components/ComparisonSection";
 import { SecuritySection } from "@/components/SecuritySection";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
+import { HowItWorks } from "@/components/HowItWorks";
+import { ScrollToTop } from "@/components/ScrollToTop";
 
 const FEATURES = [
   { key: "qr", icon: "M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h3v3h-3zM21 14v7h-7" },
@@ -34,6 +37,17 @@ const STATS = [
 
 export function LandingPage() {
   const { t } = useTranslation();
+  const heroRef = useRef<HTMLElement | null>(null);
+
+  // Cursor-following spotlight: writes CSS custom properties on the hero so the
+  // `.hero-spotlight` layer tracks the pointer without re-rendering React.
+  const handleHeroPointerMove = useCallback((event: React.PointerEvent) => {
+    const node = heroRef.current;
+    if (!node) return;
+    const rect = node.getBoundingClientRect();
+    node.style.setProperty("--spot-x", `${event.clientX - rect.left}px`);
+    node.style.setProperty("--spot-y", `${event.clientY - rect.top}px`);
+  }, []);
 
   return (
     <div className="min-h-screen bg-surface-50 dark:bg-surface-900">
@@ -72,11 +86,20 @@ export function LandingPage() {
       </header>
 
       {/* Hero */}
-      <section className="relative overflow-hidden">
+      <section
+        ref={heroRef}
+        onPointerMove={handleHeroPointerMove}
+        className="relative overflow-hidden"
+      >
         {/* Faint grid + animated brand orbs give the hero depth without noise. */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 bg-grid-faint bg-grid opacity-60 dark:opacity-[0.07]"
+        />
+        {/* Cursor-following brand spotlight (desktop pointers only). */}
+        <div
+          aria-hidden="true"
+          className="hero-spotlight pointer-events-none absolute inset-0 hidden md:block"
         />
         <div
           aria-hidden="true"
@@ -108,10 +131,17 @@ export function LandingPage() {
           <div className="animate-rise-in mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link
               to="/register"
-              className="group w-full rounded-lg bg-brand-600 px-6 py-3 text-center text-base font-semibold text-white shadow-brand transition hover:-translate-y-0.5 hover:bg-brand-700 hover:shadow-brand-lg sm:w-auto"
+              className="group relative w-full overflow-hidden rounded-lg bg-brand-600 px-6 py-3 text-center text-base font-semibold text-white shadow-brand transition hover:-translate-y-0.5 hover:bg-brand-700 hover:shadow-brand-lg sm:w-auto"
             >
-              {t("landing.ctaPrimary")}
-              <span className="ml-2 inline-block transition-transform duration-200 group-hover:translate-x-1">→</span>
+              {/* Shimmer sweep on hover for a premium, tactile CTA. */}
+              <span
+                aria-hidden="true"
+                className="animate-shimmer pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+              />
+              <span className="relative">
+                {t("landing.ctaPrimary")}
+                <span className="ml-2 inline-block transition-transform duration-200 group-hover:translate-x-1">→</span>
+              </span>
             </Link>
             <Link
               to="/qr-generator"
@@ -121,6 +151,27 @@ export function LandingPage() {
             </Link>
           </div>
           <p className="mt-4 text-sm text-surface-500 dark:text-surface-400">{t("landing.ctaHint")}</p>
+
+          {/* Trust micro-signals under the CTA — reduces friction at the decision point. */}
+          <ul className="animate-rise-in mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs font-medium text-surface-500 dark:text-surface-400">
+            {["noCard", "swissHosted", "cancelAnytime"].map((key) => (
+              <li key={key} className="inline-flex items-center gap-1.5">
+                <svg
+                  viewBox="0 0 24 24"
+                  className="h-4 w-4 text-emerald-500"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="m5 13 4 4L19 7" />
+                </svg>
+                {t(`landing.trust.${key}`)}
+              </li>
+            ))}
+          </ul>
 
           {/* Hero stats */}
           <dl className="mx-auto mt-14 grid max-w-2xl grid-cols-3 gap-4 border-t border-surface-200 pt-8 dark:border-surface-800">
@@ -143,6 +194,9 @@ export function LandingPage() {
 
       {/* Trust bar — gerçek ürün yetenekleri, uydurma referans yok */}
       <TrustBar />
+
+      {/* How it works — 3 adımda ürünü anlatır, karmaşıklığı azaltır */}
+      <HowItWorks />
 
       {/* Features */}
       <section className="border-t border-surface-200 bg-white py-20 dark:border-surface-800 dark:bg-surface-800">
@@ -268,6 +322,10 @@ export function LandingPage() {
       <section className="relative overflow-hidden bg-surface-900 py-20 dark:bg-surface-950 dark:ring-1 dark:ring-inset dark:ring-surface-800">
         <div
           aria-hidden="true"
+          className="bg-dot-grid pointer-events-none absolute inset-0 opacity-40"
+        />
+        <div
+          aria-hidden="true"
           className="animate-float-slow pointer-events-none absolute -bottom-24 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-brand-600/20 blur-3xl"
         />
         <div className="relative mx-auto max-w-3xl px-4 text-center">
@@ -277,10 +335,12 @@ export function LandingPage() {
           <p className="mt-3 text-surface-300">{t("landing.finalSubtitle")}</p>
           <Link
             to="/register"
-            className="mt-8 inline-block rounded-lg bg-white px-6 py-3 text-base font-semibold text-brand-700 shadow-lg transition hover:-translate-y-0.5 hover:bg-brand-50"
+            className="group mt-8 inline-block rounded-lg bg-white px-6 py-3 text-base font-semibold text-brand-700 shadow-lg transition hover:-translate-y-0.5 hover:bg-brand-50"
           >
             {t("landing.ctaPrimary")}
+            <span className="ml-2 inline-block transition-transform duration-200 group-hover:translate-x-1">→</span>
           </Link>
+          <p className="mt-4 text-xs text-surface-400">{t("landing.ctaHint")}</p>
         </div>
       </section>
 
@@ -314,6 +374,9 @@ export function LandingPage() {
           <p className="max-w-xl leading-relaxed">{t("landing.craftedBy")}</p>
         </div>
       </footer>
+
+      {/* Floating back-to-top control */}
+      <ScrollToTop />
     </div>
   );
 }

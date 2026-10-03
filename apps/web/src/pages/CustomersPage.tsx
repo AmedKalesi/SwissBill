@@ -6,11 +6,14 @@ import { api } from "@/lib/api";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Modal } from "@/components/ui/Modal";
+import { EmptyState } from "@/components/ui/EmptyState";
+import { useToast } from "@/components/ui/Toast";
 import { CustomerForm } from "@/features/customers/CustomerForm";
 import { useCompany } from "@/features/company/CompanyContext";
 
 export function CustomersPage() {
   const { t } = useTranslation();
+  const toast = useToast();
   const queryClient = useQueryClient();
   const { activeCompanyId } = useCompany();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -31,6 +34,10 @@ export function CustomersPage() {
     mutationFn: (id: string) => api.delete<void>(`/customers/${id}`),
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: ["customers"] });
+      toast.success(t("toasts.deleted"));
+    },
+    onError: () => {
+      toast.error(t("toasts.genericError"));
     },
   });
 
@@ -67,9 +74,13 @@ export function CustomersPage() {
             {t("common.loading")}
           </p>
         ) : customers.length === 0 ? (
-          <p className="py-6 text-center text-sm text-surface-500 dark:text-surface-400">
-            {t("customers.empty")}
-          </p>
+          <EmptyState
+            title={t("customers.empty")}
+            description={t("toasts.emptyDescription")}
+            action={
+              <Button onClick={openCreate}>{t("customers.new")}</Button>
+            }
+          />
         ) : (
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-surface-200 dark:divide-surface-700 text-sm">

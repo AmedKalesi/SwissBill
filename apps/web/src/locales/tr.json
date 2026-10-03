@@ -24,6 +24,8 @@
     "optional": "isteğe bağlı",
     "required": "zorunlu alan",
     "hide": "Gizle",
+    "selectPlaceholder": "Seçin…",
+    "none": "Yok",
     "saving": "Kaydediliyor…"
   },
   "nav": {
@@ -209,6 +211,131 @@
     "created": "Proje oluşturuldu",
     "updated": "Proje güncellendi",
     "deleted": "Proje silindi"
+  },
+  "expenses": {
+    "title": "Giderler",
+    "new": "Yeni gider",
+    "edit": "Gideri düzenle",
+    "date": "Tarih",
+    "category": "Kategori",
+    "description": "Açıklama",
+    "amount": "Tutar",
+    "vatAmount": "KDV tutarı",
+    "vendor": "Tedarikçi",
+    "reference": "Referans",
+    "deductible": "Vergiden düşülebilir",
+    "notes": "Notlar",
+    "total": "Toplam giderler",
+    "totalVat": "Toplam KDV",
+    "deductibleTotal": "Düşülebilir",
+    "empty": "Henüz gider yok",
+    "created": "Gider oluşturuldu",
+    "updated": "Gider güncellendi",
+    "deleted": "Gider silindi",
+    "categories": {
+      "office": "Ofis",
+      "software": "Yazılım",
+      "hardware": "Donanım",
+      "travel": "Seyahat",
+      "meals": "Yemek",
+      "marketing": "Pazarlama",
+      "education": "Eğitim",
+      "insurance": "Sigorta",
+      "rent": "Kira",
+      "utilities": "Faturalar",
+      "professional": "Profesyonel hizmetler",
+      "other": "Diğer"
+    }
+  },
+  "recurring": {
+    "title": "Tekrarlayan faturalar",
+    "new": "Yeni tekrarlayan fatura",
+    "edit": "Tekrarlayan faturayı düzenle",
+    "name": "Ad",
+    "customer": "Müşteri",
+    "frequency": "Sıklık",
+    "intervalCount": "Her",
+    "startDate": "Başlangıç tarihi",
+    "endDate": "Bitiş tarihi",
+    "nextRun": "Sonraki çalışma",
+    "lastRun": "Son çalışma",
+    "dueDays": "Ödeme süresi (gün)",
+    "qrReferenceType": "Referans türü",
+    "autoSend": "E-posta ile otomatik gönder",
+    "notes": "Notlar",
+    "runNow": "Şimdi çalıştır",
+    "pause": "Duraklat",
+    "resume": "Devam ettir",
+    "empty": "Henüz tekrarlayan fatura yok",
+    "created": "Tekrarlayan fatura oluşturuldu",
+    "updated": "Tekrarlayan fatura güncellendi",
+    "deleted": "Tekrarlayan fatura silindi",
+    "ran": "Fatura oluşturuldu",
+    "statusChanged": "Durum güncellendi",
+    "frequencies": {
+      "daily": "Günlük",
+      "weekly": "Haftalık",
+      "monthly": "Aylık",
+      "quarterly": "Üç aylık",
+      "yearly": "Yıllık"
+    },
+    "statuses": {
+      "active": "Aktif",
+      "paused": "Duraklatıldı",
+      "completed": "Tamamlandı"
+    }
+  },
+  "quotes": {
+    "title": "Teklifler",
+    "new": "Yeni teklif",
+    "edit": "Teklifi düzenle",
+    "number": "Teklif numarası",
+    "customer": "Müşteri",
+    "issueDate": "Düzenleme tarihi",
+    "validUntil": "Geçerlilik tarihi",
+    "items": "Kalemler",
+    "notes": "Notlar",
+    "empty": "Henüz teklif yok",
+    "created": "Teklif oluşturuldu",
+    "updated": "Teklif güncellendi",
+    "deleted": "Teklif silindi",
+    "statusUpdated": "Durum güncellendi",
+    "markSent": "Gönderildi olarak işaretle",
+    "accept": "Kabul et",
+    "reject": "Reddet",
+    "convert": "Faturaya dönüştür",
+    "converted": "Teklif faturaya dönüştürüldü",
+    "statuses": {
+      "draft": "Taslak",
+      "sent": "Gönderildi",
+      "accepted": "Kabul edildi",
+      "rejected": "Reddedildi",
+      "expired": "Süresi doldu",
+      "converted": "Dönüştürüldü"
+    }
+  },
+  "portal": {
+    "welcome": "Merhaba, {{name}}",
+    "subtitle": "{{company}} firmasından faturalarınız ve teklifleriniz",
+    "companyInfo": "Şirket bilgileri",
+    "iban": "IBAN",
+    "invoices": "Faturalar",
+    "invoicesDescription": "Fatura geçmişiniz",
+    "quotes": "Teklifler",
+    "quotesDescription": "Teklif geçmişiniz",
+    "noInvoices": "Henüz fatura yok",
+    "noQuotes": "Henüz teklif yok",
+    "notFoundTitle": "Portal kullanılamıyor",
+    "notFoundDescription": "Bu portal bağlantısı geçersiz veya süresi dolmuş.",
+    "poweredBy": "flinkli ile desteklenmektedir",
+    "table": {
+      "number": "Numara",
+      "issueDate": "Düzenleme tarihi",
+      "dueDate": "Vade tarihi",
+      "validUntil": "Geçerlilik tarihi",
+      "total": "Toplam",
+      "status": "Durum"
+    }
   },
   "companySwitcher": {
     "label": "Şirketler",
@@ -408,11 +535,13 @@
       "setup": "İlk faturaya kadar"
     },
     "trust": {
-      "qrStandard": "İsviçre QR-fatura standardı (SPC 2026)",
-      "vat": "Tüm İsviçre KDV oranları hazır",
-      "languages": "6 dil kutudan çıkar",
-      "swissHosted": "İsviçre'de barındırılan veri",
-      "pdf": "Baskıya hazır PDF faturalar",
+      "noCard": "Kredi kartı gerekmez",
+      "swissHosted": "İsviçre’de barındırılır",
+      "cancelAnytime": "İstediğiniz zaman iptal",
+      "qrStandard": "Swiss QR-fatura standardı",
+      "vat": "İsviçre KDV oranları",
+      "languages": "6 dilde fatura",
+      "pdf": "PDF ve e-posta gönderimi",
       "reminders": "Otomatik ödeme hatırlatmaları"
     },
     "billing": {
@@ -543,6 +672,26 @@
         "q": "Destek sunuyor musunuz?",
         "a": "Evet. Erken aşamada bir ürün olarak destek doğrudan kurucudan gelir. Bize yazın, genellikle bir iş günü içinde gerçek bir yanıt alırsınız."
       }
+    },
+    "backToTop": "Başa dön",
+    "how": {
+      "badge": "Nasıl çalışır",
+      "title": "Üç adımda ilk faturanız",
+      "subtitle": "Kurulumdan ödemeye kadar her şey dakikalar içinde. Muhasebe bilgisi gerekmez.",
+      "steps": {
+        "profile": {
+          "title": "Şirketinizi kurun",
+          "desc": "Şirket bilgilerinizi ve KDV oranınızı bir kez girin. QR-IBAN otomatik doğrulanır."
+        },
+        "invoice": {
+          "title": "Faturayı oluşturun",
+          "desc": "Müşteriyi seçin, kalemleri ekleyin. QR-fatura ve PDF anında hazır."
+        },
+        "getPaid": {
+          "title": "Ödemenizi alın",
+          "desc": "Müşteri QR kodu tarar ve öder. Siz ödemeyi panelden takip edin."
+        }
+      }
     }
   },
   "errors": {
@@ -550,7 +699,12 @@
     "planLimitInvoices": "Planınızın fatura limitine ulaşıldı. Lütfen yükseltin.",
     "notFound": "Bulunamadı",
     "unauthorized": "Yetkisiz",
-    "network": "Ağ hatası. Lütfen tekrar deneyin."
+    "network": "Ağ hatası. Lütfen tekrar deneyin.",
+    "validation": "Lütfen formdaki hataları kontrol edin.",
+    "boundaryTitle": "Bir şeyler ters gitti",
+    "boundaryDescription": "Bu sayfa görüntülenirken beklenmeyen bir hata oluştu. Tekrar deneyebilir veya uygulamayı yenileyebilirsiniz.",
+    "boundaryRetry": "Tekrar dene",
+    "boundaryReload": "Uygulamayı yenile"
   },
   "workspace": {
     "collections": "Tahsilat merkezi",
@@ -586,5 +740,13 @@
   "theme": {
     "switchToDark": "Koyu moda geç",
     "switchToLight": "Açık moda geç"
+  },
+  "toasts": {
+    "sessionExpired": "Oturumunuz sona erdi. Lütfen tekrar giriş yapın.",
+    "saved": "Kaydedildi",
+    "deleted": "Silindi",
+    "genericError": "Bir şeyler ters gitti. Lütfen tekrar deneyin.",
+    "emptyTitle": "Henüz kayıt yok",
+    "emptyDescription": "Başlamak için yeni bir kayıt oluşturun."
   }
 }

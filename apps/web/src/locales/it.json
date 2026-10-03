@@ -535,12 +535,14 @@
       "setup": "Fino alla prima fattura"
     },
     "trust": {
-      "qrStandard": "QR-fattura svizzera (SPC 2026)",
-      "vat": "Tutte le aliquote IVA svizzere incluse",
-      "languages": "6 lingue di serie",
-      "swissHosted": "Dati ospitati in Svizzera",
-      "pdf": "Fatture PDF pronte per la stampa",
-      "reminders": "Solleciti di pagamento automatici"
+      "noCard": "Nessuna carta richiesta",
+      "swissHosted": "Ospitato in Svizzera",
+      "cancelAnytime": "Annulla quando vuoi",
+      "qrStandard": "Standard svizzero QR-fattura",
+      "vat": "Aliquote IVA svizzere",
+      "languages": "Fatture in 6 lingue",
+      "pdf": "Invio PDF & e-mail",
+      "reminders": "Promemoria di pagamento automatici"
     },
     "billing": {
       "monthly": "Mensile",
@@ -670,6 +672,26 @@
         "q": "Offrite assistenza?",
         "a": "Sì. Essendo un prodotto in fase iniziale, l'assistenza arriva direttamente dal fondatore. Scrivici e riceverai una risposta reale, di solito entro un giorno lavorativo."
       }
+    },
+    "backToTop": "Torna su",
+    "how": {
+      "badge": "Come funziona",
+      "title": "La tua prima fattura in tre passi",
+      "subtitle": "Dalla configurazione al pagamento in pochi minuti. Nessuna conoscenza contabile necessaria.",
+      "steps": {
+        "profile": {
+          "title": "Configura la tua azienda",
+          "desc": "Inserisci i dati aziendali e l’aliquota IVA una volta. L’IBAN-QR viene convalidato automaticamente."
+        },
+        "invoice": {
+          "title": "Crea la fattura",
+          "desc": "Scegli un cliente, aggiungi le voci. La fattura QR e il PDF sono pronti all’istante."
+        },
+        "getPaid": {
+          "title": "Ricevi il pagamento",
+          "desc": "Il cliente scansiona il codice QR e paga. Monitora il pagamento dalla dashboard."
+        }
+      }
     }
   },
   "errors": {
@@ -678,7 +700,11 @@
     "notFound": "Non trovato",
     "unauthorized": "Non autorizzato",
     "network": "Errore di rete. Riprova.",
-    "validation": "Controlla gli errori nel modulo."
+    "validation": "Controlla gli errori nel modulo.",
+    "boundaryTitle": "Qualcosa è andato storto",
+    "boundaryDescription": "Si è verificato un errore imprevisto durante il rendering di questa pagina. Puoi riprovare o ricaricare l’app.",
+    "boundaryRetry": "Riprova",
+    "boundaryReload": "Ricarica l’app"
   },
   "workspace": {
     "collections": "Riepilogo incassi",
@@ -714,5 +740,13 @@
   "theme": {
     "switchToDark": "Passa alla modalità scura",
     "switchToLight": "Passa alla modalità chiara"
+  },
+  "toasts": {
+    "sessionExpired": "La tua sessione è scaduta. Accedi di nuovo.",
+    "saved": "Salvato",
+    "deleted": "Eliminato",
+    "genericError": "Qualcosa è andato storto. Riprova.",
+    "emptyTitle": "Ancora nulla",
+    "emptyDescription": "Crea un nuovo record per iniziare."
   }
 }

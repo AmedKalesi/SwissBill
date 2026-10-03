@@ -7,6 +7,8 @@ import { formatDate, formatMoney } from "@/lib/format";
 import { Button } from "@/components/ui/Button";
 import { Card, CardHeader } from "@/components/ui/Card";
 import { Modal } from "@/components/ui/Modal";
+import { EmptyState } from "@/components/ui/EmptyState";
+import { useToast } from "@/components/ui/Toast";
 import { SignaturePad } from "@/components/SignaturePad";
 import { QuoteForm } from "@/features/quotes/QuoteForm";
 import { useCompany } from "@/features/company/CompanyContext";
@@ -22,6 +24,7 @@ const statusClasses: Record<string, string> = {
 
 export function QuotesPage() {
   const { t } = useTranslation();
+  const toast = useToast();
   const queryClient = useQueryClient();
   const { activeCompanyId } = useCompany();
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -46,6 +49,10 @@ export function QuotesPage() {
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: ["quotes"] });
       setDeleting(null);
+      toast.success(t("toasts.deleted"));
+    },
+    onError: () => {
+      toast.error(t("toasts.genericError"));
     },
   });
 
@@ -54,6 +61,10 @@ export function QuotesPage() {
       api.patch<Quote>(`/quotes/${id}/status`, { status }),
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: ["quotes"] });
+      toast.success(t("toasts.saved"));
+    },
+    onError: () => {
+      toast.error(t("toasts.genericError"));
     },
   });
 
@@ -78,6 +89,10 @@ export function QuotesPage() {
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: ["quotes"] });
       void queryClient.invalidateQueries({ queryKey: ["invoices"] });
+      toast.success(t("toasts.saved"));
+    },
+    onError: () => {
+      toast.error(t("toasts.genericError"));
     },
   });
 
@@ -107,7 +122,11 @@ export function QuotesPage() {
         {quotesQuery.isLoading ? (
           <p className="text-sm text-surface-500 dark:text-surface-400">{t("common.loading")}</p>
         ) : quotes.length === 0 ? (
-          <p className="text-sm text-surface-500 dark:text-surface-400">{t("quotes.empty")}</p>
+          <EmptyState
+            title={t("quotes.empty")}
+            description={t("toasts.emptyDescription")}
+            action={<Button onClick={openCreate}>{t("quotes.new")}</Button>}
+          />
         ) : (
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-surface-200 dark:divide-surface-700 text-sm">

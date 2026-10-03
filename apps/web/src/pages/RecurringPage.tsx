@@ -7,6 +7,8 @@ import { formatDate } from "@/lib/format";
 import { Button } from "@/components/ui/Button";
 import { Card, CardHeader } from "@/components/ui/Card";
 import { Modal } from "@/components/ui/Modal";
+import { EmptyState } from "@/components/ui/EmptyState";
+import { useToast } from "@/components/ui/Toast";
 import { RecurringForm } from "@/features/recurring/RecurringForm";
 import { useCompany } from "@/features/company/CompanyContext";
 
@@ -18,6 +20,7 @@ const statusClasses: Record<string, string> = {
 
 export function RecurringPage() {
   const { t } = useTranslation();
+  const toast = useToast();
   const queryClient = useQueryClient();
   const { activeCompanyId } = useCompany();
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -40,6 +43,10 @@ export function RecurringPage() {
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: ["recurring-invoices"] });
       setDeleting(null);
+      toast.success(t("toasts.deleted"));
+    },
+    onError: () => {
+      toast.error(t("toasts.genericError"));
     },
   });
 
@@ -49,6 +56,10 @@ export function RecurringPage() {
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: ["recurring-invoices"] });
       void queryClient.invalidateQueries({ queryKey: ["invoices"] });
+      toast.success(t("toasts.saved"));
+    },
+    onError: () => {
+      toast.error(t("toasts.genericError"));
     },
   });
 
@@ -57,6 +68,10 @@ export function RecurringPage() {
       api.patch<RecurringInvoice>(`/recurring-invoices/${id}/status`, { status }),
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: ["recurring-invoices"] });
+      toast.success(t("toasts.saved"));
+    },
+    onError: () => {
+      toast.error(t("toasts.genericError"));
     },
   });
 
@@ -86,7 +101,11 @@ export function RecurringPage() {
         {recurringQuery.isLoading ? (
           <p className="text-sm text-surface-500 dark:text-surface-400">{t("common.loading")}</p>
         ) : recurring.length === 0 ? (
-          <p className="text-sm text-surface-500 dark:text-surface-400">{t("recurring.empty")}</p>
+          <EmptyState
+            title={t("recurring.empty")}
+            description={t("toasts.emptyDescription")}
+            action={<Button onClick={openCreate}>{t("recurring.new")}</Button>}
+          />
         ) : (
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-surface-200 dark:divide-surface-700 text-sm">

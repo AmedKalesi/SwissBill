@@ -535,11 +535,13 @@
       "setup": "Jusqu'à la 1re facture"
     },
     "trust": {
-      "qrStandard": "QR-facture suisse (SPC 2026)",
-      "vat": "Tous les taux de TVA suisses inclus",
-      "languages": "6 langues d'origine",
-      "swissHosted": "Données hébergées en Suisse",
-      "pdf": "Factures PDF prêtes à imprimer",
+      "noCard": "Aucune carte requise",
+      "swissHosted": "Hébergé en Suisse",
+      "cancelAnytime": "Annulable à tout moment",
+      "qrStandard": "Standard suisse du QR-facture",
+      "vat": "Taux de TVA suisses",
+      "languages": "Factures en 6 langues",
+      "pdf": "Envoi PDF & e-mail",
       "reminders": "Rappels de paiement automatiques"
     },
     "billing": {
@@ -670,6 +672,26 @@
         "q": "Proposez-vous un support ?",
         "a": "Oui. En tant que produit en phase de démarrage, le support vient directement du fondateur. Écrivez-nous et vous obtiendrez une vraie réponse, généralement en un jour ouvrable."
       }
+    },
+    "backToTop": "Haut de page",
+    "how": {
+      "badge": "Comment ça marche",
+      "title": "Votre première facture en trois étapes",
+      "subtitle": "De la configuration au paiement en quelques minutes. Aucune connaissance comptable requise.",
+      "steps": {
+        "profile": {
+          "title": "Configurez votre entreprise",
+          "desc": "Saisissez vos informations et votre taux de TVA une fois. L’IBAN-QR est validé automatiquement."
+        },
+        "invoice": {
+          "title": "Créez la facture",
+          "desc": "Choisissez un client, ajoutez des lignes. La facture QR et le PDF sont prêts instantanément."
+        },
+        "getPaid": {
+          "title": "Encaissez le paiement",
+          "desc": "Votre client scanne le code QR et paie. Suivez le paiement depuis le tableau de bord."
+        }
+      }
     }
   },
   "errors": {
@@ -678,7 +700,11 @@
     "notFound": "Introuvable",
     "unauthorized": "Non autorisé",
     "network": "Erreur réseau. Veuillez réessayer.",
-    "validation": "Veuillez vérifier les erreurs du formulaire."
+    "validation": "Veuillez vérifier les erreurs du formulaire.",
+    "boundaryTitle": "Une erreur est survenue",
+    "boundaryDescription": "Une erreur inattendue s’est produite lors de l’affichage de cette page. Vous pouvez réessayer ou recharger l’application.",
+    "boundaryRetry": "Réessayer",
+    "boundaryReload": "Recharger l’application"
   },
   "workspace": {
     "collections": "Suivi des encaissements",
@@ -714,5 +740,13 @@
   "theme": {
     "switchToDark": "Passer au mode sombre",
     "switchToLight": "Passer au mode clair"
+  },
+  "toasts": {
+    "sessionExpired": "Votre session a expiré. Veuillez vous reconnecter.",
+    "saved": "Enregistré",
+    "deleted": "Supprimé",
+    "genericError": "Une erreur est survenue. Veuillez réessayer.",
+    "emptyTitle": "Rien pour le moment",
+    "emptyDescription": "Créez un nouvel enregistrement pour commencer."
   }
 }

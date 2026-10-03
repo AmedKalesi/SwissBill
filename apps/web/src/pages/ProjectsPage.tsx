@@ -7,11 +7,14 @@ import { formatMoney } from "@/lib/format";
 import { Button } from "@/components/ui/Button";
 import { Card, CardHeader } from "@/components/ui/Card";
 import { Modal } from "@/components/ui/Modal";
+import { EmptyState } from "@/components/ui/EmptyState";
+import { useToast } from "@/components/ui/Toast";
 import { ProjectForm } from "@/features/projects/ProjectForm";
 import { useCompany } from "@/features/company/CompanyContext";
 
 export function ProjectsPage() {
   const { t } = useTranslation();
+  const toast = useToast();
   const queryClient = useQueryClient();
   const { activeCompanyId } = useCompany();
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -34,6 +37,10 @@ export function ProjectsPage() {
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: ["projects"] });
       setDeleting(null);
+      toast.success(t("toasts.deleted"));
+    },
+    onError: () => {
+      toast.error(t("toasts.genericError"));
     },
   });
 
@@ -63,7 +70,11 @@ export function ProjectsPage() {
         {projectsQuery.isLoading ? (
           <p className="text-sm text-surface-500 dark:text-surface-400">{t("common.loading")}</p>
         ) : projects.length === 0 ? (
-          <p className="text-sm text-surface-500 dark:text-surface-400">{t("projects.empty")}</p>
+          <EmptyState
+            title={t("projects.empty")}
+            description={t("toasts.emptyDescription")}
+            action={<Button onClick={openCreate}>{t("projects.new")}</Button>}
+          />
         ) : (
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-surface-200 dark:divide-surface-700 text-sm">
