@@ -551,6 +551,100 @@
     },
     "faqTitle": "Frequently asked questions",
     "faqSubtitle": "Everything you need to know before you start.",
+    "compare": {
+      "title": "flinkli vs. Excel vs. an accountant",
+      "subtitle": "An honest look at how flinkli compares with the two options most Swiss freelancers use today.",
+      "feature": "Capability",
+      "excel": "Excel template",
+      "accountant": "Accountant",
+      "rows": {
+        "qr": "Compliant QR-bills",
+        "speed": "Invoice in under 2 minutes",
+        "cost": "No recurring cost per invoice",
+        "reminders": "Automatic payment reminders",
+        "languages": "Multilingual invoices",
+        "vat": "Swiss VAT handled correctly",
+        "control": "You keep full control"
+      },
+      "note": "Comparison reflects typical usage. An accountant adds real value for complex cases — flinkli is built for everyday freelancer invoicing."
+    },
+    "security": {
+      "badge": "Swiss data residency",
+      "title": "Your data stays in Switzerland",
+      "body": "Invoicing data is sensitive. flinkli stores it on Swiss-hosted infrastructure, encrypts it in transit, and never sells it. You can export everything at any time.",
+      "highlight": "Swiss hosting · TLS in transit · encryption at rest · export anytime",
+      "points": {
+        "hosting": {
+          "title": "Swiss hosting",
+          "desc": "Data is stored on infrastructure located in Switzerland."
+        },
+        "transit": {
+          "title": "Encrypted in transit",
+          "desc": "All traffic is protected with TLS end to end."
+        },
+        "rest": {
+          "title": "Encrypted at rest",
+          "desc": "Stored data is encrypted, not left in plain text."
+        },
+        "export": {
+          "title": "Export anytime",
+          "desc": "Download your invoices and data whenever you want."
+        },
+        "ownership": {
+          "title": "You own your data",
+          "desc": "Your invoices and customers belong to you, always."
+        },
+        "noResale": {
+          "title": "Never sold",
+          "desc": "We do not sell or share your data with third parties."
+        }
+      }
+    },
+    "workflow": {
+      "title": "Fits the way you already work",
+      "subtitle": "From first draft to reconciled payment — flinkli connects to the tools a Swiss freelancer already uses.",
+      "steps": {
+        "create": {
+          "title": "Create",
+          "desc": "Draft a compliant QR-invoice in seconds with your own branding."
+        },
+        "send": {
+          "title": "Send",
+          "desc": "Email the PDF directly, or share a link your customer can open."
+        },
+        "pay": {
+          "title": "Get paid",
+          "desc": "Customers scan the QR-code with any Swiss banking app."
+        },
+        "reconcile": {
+          "title": "Reconcile",
+          "desc": "Track paid, open and overdue invoices in one clear overview."
+        }
+      }
+    },
+    "voices": {
+      "badge": "Early users",
+      "title": "What early users tell us",
+      "subtitle": "flinkli just launched. These are honest impressions from the first freelancers using it — not paid reviews.",
+      "disclaimer": "Early-stage product. Feedback shared with permission; names shortened for privacy.",
+      "items": {
+        "designer": {
+          "quote": "I sent my first QR-invoice in under two minutes. My old template took half an hour.",
+          "role": "Freelance designer",
+          "place": "Zurich"
+        },
+        "consultant": {
+          "quote": "The reminders alone save me a follow-up email every single week.",
+          "role": "Independent consultant",
+          "place": "Geneva"
+        },
+        "studio": {
+          "quote": "Finally an invoicing tool that speaks Italian and understands Swiss VAT.",
+          "role": "Small studio owner",
+          "place": "Lugano"
+        }
+      }
+    },
     "faq": {
       "qr": {
         "q": "What exactly is a Swiss QR-bill?",

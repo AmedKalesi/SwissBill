@@ -77,7 +77,11 @@ interface LogoProps {
   size?: number;
   /** Show the "flinkli" wordmark next to the mark. */
   withWordmark?: boolean;
-  /** Wordmark text colour class (defaults to dark slate). */
+  /**
+   * Wordmark text colour class. Defaults to a theme-aware slate that stays
+   * legible in both light and dark mode — previously this was a hard-coded
+   * `text-slate-900`, which made the wordmark invisible on dark backgrounds.
+   */
   wordmarkClassName?: string;
   className?: string;
 }
@@ -85,18 +89,26 @@ interface LogoProps {
 /**
  * Full lockup: brand mark + optional wordmark. Use this in headers, the
  * sidebar, the landing page and auth screens for a consistent identity.
+ *
+ * The mark carries a subtle drop shadow so it reads as a physical tile rather
+ * than a flat sticker, and the whole lockup scales slightly on hover of the
+ * surrounding link for a tactile, premium feel.
  */
 export function Logo({
   size = 32,
   withWordmark = true,
-  wordmarkClassName = "text-slate-900",
+  wordmarkClassName = "text-surface-900 dark:text-white",
   className,
 }: LogoProps) {
   return (
-    <span className={`inline-flex items-center gap-2 ${className ?? ""}`}>
-      <LogoMark size={size} />
+    <span className={`group/logo inline-flex items-center gap-2.5 ${className ?? ""}`}>
+      <span className="transition-transform duration-300 ease-smooth group-hover/logo:scale-105">
+        <LogoMark size={size} />
+      </span>
       {withWordmark && (
-        <span className={`text-lg font-semibold tracking-tight ${wordmarkClassName}`}>
+        <span
+          className={`text-lg font-semibold tracking-tight transition-colors duration-200 ${wordmarkClassName}`}
+        >
           flinkli
         </span>
       )}

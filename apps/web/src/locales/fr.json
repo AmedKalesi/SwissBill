@@ -551,6 +551,100 @@
     },
     "faqTitle": "Questions fréquentes",
     "faqSubtitle": "Tout ce qu'il faut savoir avant de commencer.",
+    "compare": {
+      "title": "flinkli vs Excel vs un comptable",
+      "subtitle": "Un regard honnête sur la façon dont flinkli se compare aux deux options que la plupart des indépendants suisses utilisent aujourd'hui.",
+      "feature": "Fonction",
+      "excel": "Modèle Excel",
+      "accountant": "Comptable",
+      "rows": {
+        "qr": "QR-factures conformes",
+        "speed": "Facture en moins de 2 minutes",
+        "cost": "Aucun coût récurrent par facture",
+        "reminders": "Rappels de paiement automatiques",
+        "languages": "Factures multilingues",
+        "vat": "TVA suisse gérée correctement",
+        "control": "Vous gardez le contrôle total"
+      },
+      "note": "La comparaison reflète un usage typique. Un comptable apporte une vraie valeur pour les cas complexes — flinkli est conçu pour la facturation quotidienne des indépendants."
+    },
+    "security": {
+      "badge": "Données en Suisse",
+      "title": "Vos données restent en Suisse",
+      "body": "Les données de facturation sont sensibles. flinkli les stocke sur une infrastructure hébergée en Suisse, les chiffre en transit et ne les vend jamais. Vous pouvez tout exporter à tout moment.",
+      "highlight": "Hébergement suisse · TLS en transit · chiffrement au repos · export à tout moment",
+      "points": {
+        "hosting": {
+          "title": "Hébergement suisse",
+          "desc": "Les données sont stockées sur une infrastructure située en Suisse."
+        },
+        "transit": {
+          "title": "Chiffré en transit",
+          "desc": "Tout le trafic est protégé de bout en bout par TLS."
+        },
+        "rest": {
+          "title": "Chiffré au repos",
+          "desc": "Les données stockées sont chiffrées, jamais en clair."
+        },
+        "export": {
+          "title": "Export à tout moment",
+          "desc": "Téléchargez vos factures et données quand vous voulez."
+        },
+        "ownership": {
+          "title": "Vos données vous appartiennent",
+          "desc": "Vos factures et clients vous appartiennent, toujours."
+        },
+        "noResale": {
+          "title": "Jamais vendues",
+          "desc": "Nous ne vendons ni ne partageons vos données avec des tiers."
+        }
+      }
+    },
+    "workflow": {
+      "title": "S'adapte à votre façon de travailler",
+      "subtitle": "Du premier brouillon au paiement rapproché — flinkli se connecte aux outils que les indépendants suisses utilisent déjà.",
+      "steps": {
+        "create": {
+          "title": "Créer",
+          "desc": "Rédigez une QR-facture conforme en quelques secondes avec votre image."
+        },
+        "send": {
+          "title": "Envoyer",
+          "desc": "Envoyez le PDF par e-mail ou partagez un lien."
+        },
+        "pay": {
+          "title": "Être payé",
+          "desc": "Vos clients scannent le QR-code avec n'importe quelle app bancaire suisse."
+        },
+        "reconcile": {
+          "title": "Rapprocher",
+          "desc": "Factures payées, ouvertes et en retard dans un aperçu clair."
+        }
+      }
+    },
+    "voices": {
+      "badge": "Premiers utilisateurs",
+      "title": "Ce que disent nos premiers utilisateurs",
+      "subtitle": "flinkli vient de lancer. Voici des impressions honnêtes des premiers indépendants — pas des avis payants.",
+      "disclaimer": "Produit en phase de démarrage. Retours partagés avec accord ; noms abrégés pour la confidentialité.",
+      "items": {
+        "designer": {
+          "quote": "J'ai envoyé ma première QR-facture en moins de deux minutes. Mon ancien modèle prenait une demi-heure.",
+          "role": "Designer indépendante",
+          "place": "Zurich"
+        },
+        "consultant": {
+          "quote": "Rien que les rappels m'économisent un e-mail de relance chaque semaine.",
+          "role": "Consultant indépendant",
+          "place": "Genève"
+        },
+        "studio": {
+          "quote": "Enfin un outil de facturation qui parle italien et comprend la TVA suisse.",
+          "role": "Petite propriétaire de studio",
+          "place": "Lugano"
+        }
+      }
+    },
     "faq": {
       "qr": {
         "q": "Qu'est-ce qu'une QR-facture suisse exactement ?",

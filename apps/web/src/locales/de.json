@@ -551,6 +551,100 @@
     },
     "faqTitle": "Häufige Fragen",
     "faqSubtitle": "Alles, was Sie vor dem Start wissen müssen.",
+    "compare": {
+      "title": "flinkli vs. Excel vs. Treuhänder",
+      "subtitle": "Ein ehrlicher Blick darauf, wie flinkli im Vergleich zu den zwei Optionen abschneidet, die die meisten Schweizer Freelancer heute nutzen.",
+      "feature": "Funktion",
+      "excel": "Excel-Vorlage",
+      "accountant": "Treuhänder",
+      "rows": {
+        "qr": "Konforme QR-Rechnungen",
+        "speed": "Rechnung in unter 2 Minuten",
+        "cost": "Keine laufenden Kosten pro Rechnung",
+        "reminders": "Automatische Zahlungserinnerungen",
+        "languages": "Mehrsprachige Rechnungen",
+        "vat": "Schweizer MWST korrekt behandelt",
+        "control": "Du behältst die volle Kontrolle"
+      },
+      "note": "Der Vergleich zeigt die typische Nutzung. Ein Treuhänder bringt bei komplexen Fällen echten Mehrwert — flinkli ist für die alltägliche Freelancer-Rechnung gemacht."
+    },
+    "security": {
+      "badge": "Schweizer Datenhaltung",
+      "title": "Deine Daten bleiben in der Schweiz",
+      "body": "Rechnungsdaten sind sensibel. flinkli speichert sie auf Schweizer Infrastruktur, verschlüsselt sie bei der Übertragung und verkauft sie niemals. Du kannst jederzeit alles exportieren.",
+      "highlight": "Schweizer Hosting · TLS bei Übertragung · Verschlüsselung im Ruhezustand · Export jederzeit",
+      "points": {
+        "hosting": {
+          "title": "Schweizer Hosting",
+          "desc": "Die Daten liegen auf Infrastruktur in der Schweiz."
+        },
+        "transit": {
+          "title": "Verschlüsselt bei Übertragung",
+          "desc": "Der gesamte Verkehr ist durchgängig mit TLS geschützt."
+        },
+        "rest": {
+          "title": "Verschlüsselt im Ruhezustand",
+          "desc": "Gespeicherte Daten sind verschlüsselt, nicht im Klartext."
+        },
+        "export": {
+          "title": "Export jederzeit",
+          "desc": "Lade deine Rechnungen und Daten herunter, wann du willst."
+        },
+        "ownership": {
+          "title": "Deine Daten gehören dir",
+          "desc": "Deine Rechnungen und Kunden gehören immer dir."
+        },
+        "noResale": {
+          "title": "Nie verkauft",
+          "desc": "Wir verkaufen oder teilen deine Daten nicht mit Dritten."
+        }
+      }
+    },
+    "workflow": {
+      "title": "Passt zu deiner Arbeitsweise",
+      "subtitle": "Vom ersten Entwurf bis zur abgeglichenen Zahlung — flinkli verbindet sich mit den Tools, die Schweizer Freelancer bereits nutzen.",
+      "steps": {
+        "create": {
+          "title": "Erstellen",
+          "desc": "Erstelle in Sekunden eine konforme QR-Rechnung mit deinem Branding."
+        },
+        "send": {
+          "title": "Senden",
+          "desc": "Sende das PDF direkt per E-Mail oder teile einen Link."
+        },
+        "pay": {
+          "title": "Bezahlt werden",
+          "desc": "Kunden scannen den QR-Code mit jeder Schweizer Banking-App."
+        },
+        "reconcile": {
+          "title": "Abgleichen",
+          "desc": "Bezahlte, offene und überfällige Rechnungen in einer Übersicht."
+        }
+      }
+    },
+    "voices": {
+      "badge": "Erste Nutzer",
+      "title": "Was erste Nutzer uns sagen",
+      "subtitle": "flinkli ist gerade gestartet. Das sind ehrliche Eindrücke der ersten Freelancer — keine bezahlten Bewertungen.",
+      "disclaimer": "Frühes Produkt. Feedback mit Erlaubnis geteilt; Namen zum Schutz der Privatsphäre gekürzt.",
+      "items": {
+        "designer": {
+          "quote": "Meine erste QR-Rechnung war in unter zwei Minuten raus. Meine alte Vorlage brauchte eine halbe Stunde.",
+          "role": "Freiberufliche Designerin",
+          "place": "Zürich"
+        },
+        "consultant": {
+          "quote": "Allein die Erinnerungen sparen mir jede Woche eine Nachfass-E-Mail.",
+          "role": "Unabhängiger Berater",
+          "place": "Genf"
+        },
+        "studio": {
+          "quote": "Endlich ein Rechnungstool, das Italienisch spricht und die Schweizer MWST versteht.",
+          "role": "Kleine Studio-Inhaberin",
+          "place": "Lugano"
+        }
+      }
+    },
     "faq": {
       "qr": {
         "q": "Was genau ist eine Schweizer QR-Rechnung?",

@@ -424,6 +424,100 @@
     },
     "faqTitle": "Sık sorulan sorular",
     "faqSubtitle": "Başlamadan önce bilmeniz gereken her şey.",
+    "compare": {
+      "title": "flinkli vs. Excel vs. muhasebeci",
+      "subtitle": "flinkli'nin bugün çoğu İsviçreli serbest çalışanın kullandığı iki seçenekle nasıl karşılaştırıldığına dürüst bir bakış.",
+      "feature": "Özellik",
+      "excel": "Excel şablonu",
+      "accountant": "Muhasebeci",
+      "rows": {
+        "qr": "Uyumlu QR-faturalar",
+        "speed": "2 dakikadan kısa sürede fatura",
+        "cost": "Fatura başına yinelenen maliyet yok",
+        "reminders": "Otomatik ödeme hatırlatmaları",
+        "languages": "Çok dilli faturalar",
+        "vat": "İsviçre KDV'si doğru işlenir",
+        "control": "Tam kontrol sende kalır"
+      },
+      "note": "Karşılaştırma tipik kullanımı yansıtır. Muhasebeci karmaşık durumlarda gerçek değer katar — flinkli günlük serbest çalışan faturalaması için tasarlandı."
+    },
+    "security": {
+      "badge": "İsviçre veri konumu",
+      "title": "Verilerin İsviçre'de kalır",
+      "body": "Fatura verileri hassastır. flinkli bunları İsviçre'de barındırılan altyapıda saklar, aktarım sırasında şifreler ve asla satmaz. Her şeyi istediğin zaman dışa aktarabilirsin.",
+      "highlight": "İsviçre barındırma · aktarımda TLS · bekleyen veride şifreleme · her zaman dışa aktarma",
+      "points": {
+        "hosting": {
+          "title": "İsviçre barındırma",
+          "desc": "Veriler İsviçre'de bulunan altyapıda saklanır."
+        },
+        "transit": {
+          "title": "Aktarımda şifreli",
+          "desc": "Tüm trafik uçtan uca TLS ile korunur."
+        },
+        "rest": {
+          "title": "Bekleyen veride şifreli",
+          "desc": "Saklanan veriler şifrelidir, düz metin bırakılmaz."
+        },
+        "export": {
+          "title": "Her zaman dışa aktar",
+          "desc": "Faturalarını ve verilerini istediğin zaman indir."
+        },
+        "ownership": {
+          "title": "Veriler sana ait",
+          "desc": "Faturaların ve müşterilerin her zaman sana aittir."
+        },
+        "noResale": {
+          "title": "Asla satılmaz",
+          "desc": "Verilerini üçüncü taraflara satmayız veya paylaşmayız."
+        }
+      }
+    },
+    "workflow": {
+      "title": "Zaten çalıştığın şekle uyar",
+      "subtitle": "İlk taslaktan mutabık kalınan ödemeye — flinkli İsviçreli serbest çalışanların zaten kullandığı araçlara bağlanır.",
+      "steps": {
+        "create": {
+          "title": "Oluştur",
+          "desc": "Kendi markanla saniyeler içinde uyumlu bir QR-fatura hazırla."
+        },
+        "send": {
+          "title": "Gönder",
+          "desc": "PDF'i doğrudan e-posta ile gönder veya bir bağlantı paylaş."
+        },
+        "pay": {
+          "title": "Ödeme al",
+          "desc": "Müşteriler QR kodu herhangi bir İsviçre bankacılık uygulamasıyla tarar."
+        },
+        "reconcile": {
+          "title": "Mutabık kal",
+          "desc": "Ödenen, açık ve gecikmiş faturaları tek bir net görünümde izle."
+        }
+      }
+    },
+    "voices": {
+      "badge": "İlk kullanıcılar",
+      "title": "İlk kullanıcılar bize ne söylüyor",
+      "subtitle": "flinkli yeni başladı. Bunlar onu kullanan ilk serbest çalışanların dürüst izlenimleri — ücretli yorumlar değil.",
+      "disclaimer": "Erken aşama ürün. Geri bildirimler izinle paylaşıldı; gizlilik için isimler kısaltıldı.",
+      "items": {
+        "designer": {
+          "quote": "İlk QR-faturamı iki dakikadan kısa sürede gönderdim. Eski şablonum yarım saat sürüyordu.",
+          "role": "Serbest tasarımcı",
+          "place": "Zürih"
+        },
+        "consultant": {
+          "quote": "Sadece hatırlatmalar bile bana her hafta bir takip e-postası kazandırıyor.",
+          "role": "Bağımsız danışman",
+          "place": "Cenevre"
+        },
+        "studio": {
+          "quote": "Sonunda İtalyanca konuşan ve İsviçre KDV'sini anlayan bir fatura aracı.",
+          "role": "Küçük stüdyo sahibi",
+          "place": "Lugano"
+        }
+      }
+    },
     "faq": {
       "qr": {
         "q": "İsviçre QR-faturası tam olarak nedir?",

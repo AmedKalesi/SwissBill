@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { LogoMark } from "@/components/Logo";
 
@@ -15,6 +16,20 @@ export function ProductMockup() {
   const { t } = useTranslation();
 
   const bars = [42, 68, 55, 82, 61, 74];
+
+  // Bars grow in once the mockup is on screen; respects reduced-motion.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    const reduce =
+      typeof window !== "undefined" &&
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) {
+      setMounted(true);
+      return;
+    }
+    const id = window.setTimeout(() => setMounted(true), 120);
+    return () => window.clearTimeout(id);
+  }, []);
 
   return (
     <div className="relative mx-auto mt-14 max-w-5xl px-4">
@@ -96,7 +111,7 @@ export function ProductMockup() {
               ].map((m) => (
                 <div
                   key={m.key}
-                  className="rounded-xl border border-surface-200 dark:border-surface-700 bg-surface-50 dark:bg-surface-900/40 p-3"
+                  className="group/metric rounded-xl border border-surface-200 dark:border-surface-700 bg-surface-50 dark:bg-surface-900/40 p-3 transition duration-300 ease-smooth hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-card-hover dark:hover:border-brand-700/60"
                 >
                   <p className="text-[10px] font-medium uppercase tracking-wide text-surface-400 dark:text-surface-500">
                     {t(`landing.mockup.metrics.${m.key}`)}
@@ -120,10 +135,15 @@ export function ProductMockup() {
                   {bars.map((h, i) => (
                     <div
                       key={i}
-                      className={`flex-1 rounded-t-md ${
-                        i === bars.length - 2 ? "bg-brand-600" : "bg-brand-200"
+                      className={`flex-1 rounded-t-md transition-[height,background-color] duration-700 ease-smooth ${
+                        i === bars.length - 2
+                          ? "bg-brand-600"
+                          : "bg-brand-200 hover:bg-brand-400 dark:bg-brand-900/70 dark:hover:bg-brand-700"
                       }`}
-                      style={{ height: `${h}%` }}
+                      style={{
+                        height: mounted ? `${h}%` : "6%",
+                        transitionDelay: `${i * 70}ms`,
+                      }}
                       aria-hidden="true"
                     />
                   ))}
@@ -131,7 +151,7 @@ export function ProductMockup() {
               </div>
 
               {/* QR-fatura mini kart */}
-              <div className="flex w-full flex-col items-center justify-center rounded-xl border border-surface-200 dark:border-surface-700 bg-surface-50 dark:bg-surface-900/40 p-4 sm:w-40">
+              <div className="group/qr flex w-full flex-col items-center justify-center rounded-xl border border-surface-200 dark:border-surface-700 bg-surface-50 dark:bg-surface-900/40 p-4 transition duration-300 ease-smooth hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-card-hover sm:w-40 dark:hover:border-brand-700/60">
                 <svg
                   viewBox="0 0 29 29"
                   className="h-20 w-20 text-surface-900 dark:text-white"

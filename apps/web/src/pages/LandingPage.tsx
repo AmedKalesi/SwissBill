@@ -10,6 +10,11 @@ import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { TrustBar } from "@/components/TrustBar";
 import { PricingSection } from "@/components/PricingSection";
 import { FaqAccordion } from "@/components/FaqAccordion";
+import { ScrollProgress } from "@/components/ScrollProgress";
+import { IntegrationsSection } from "@/components/IntegrationsSection";
+import { ComparisonSection } from "@/components/ComparisonSection";
+import { SecuritySection } from "@/components/SecuritySection";
+import { TestimonialsSection } from "@/components/TestimonialsSection";
 
 const FEATURES = [
   { key: "qr", icon: "M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h3v3h-3zM21 14v7h-7" },
@@ -32,6 +37,9 @@ export function LandingPage() {
 
   return (
     <div className="min-h-screen bg-surface-50 dark:bg-surface-900">
+      {/* Reading progress indicator */}
+      <ScrollProgress />
+
       {/* Header */}
       <header className="sticky top-0 z-20 border-b border-surface-200 bg-surface-50/80 backdrop-blur-md dark:border-surface-800 dark:bg-surface-900/80">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
@@ -167,6 +175,9 @@ export function LandingPage() {
         </div>
       </section>
 
+      {/* İş akışı — flinkli mevcut araçlarınıza nasıl oturuyor */}
+      <IntegrationsSection />
+
       {/* Canlı QR-fatura önizlemesi — interaktif */}
       <section className="border-t border-surface-200 bg-surface-50 py-20 dark:border-surface-800 dark:bg-surface-900">
         <div className="mx-auto max-w-6xl px-4">
@@ -225,6 +236,15 @@ export function LandingPage() {
           </RevealOnScroll>
         </div>
       </section>
+
+      {/* Karşılaştırma — flinkli vs. Excel vs. muhasebeci */}
+      <ComparisonSection />
+
+      {/* Güvenlik & veri konumu — İsviçre'de barındırma */}
+      <SecuritySection />
+
+      {/* Erken kullanıcı sesleri — uydurma yorum yok */}
+      <TestimonialsSection />
 
       {/* Pricing — aylık/yıllık geçişli interaktif bölüm */}
       <PricingSection />

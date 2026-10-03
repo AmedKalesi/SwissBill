@@ -551,6 +551,100 @@
     },
     "faqTitle": "Domande frequenti",
     "faqSubtitle": "Tutto ciò che devi sapere prima di iniziare.",
+    "compare": {
+      "title": "flinkli vs Excel vs un commercialista",
+      "subtitle": "Uno sguardo onesto su come flinkli si confronta con le due opzioni che la maggior parte dei freelance svizzeri usa oggi.",
+      "feature": "Funzione",
+      "excel": "Modello Excel",
+      "accountant": "Commercialista",
+      "rows": {
+        "qr": "QR-fatture conformi",
+        "speed": "Fattura in meno di 2 minuti",
+        "cost": "Nessun costo ricorrente per fattura",
+        "reminders": "Promemoria di pagamento automatici",
+        "languages": "Fatture multilingue",
+        "vat": "IVA svizzera gestita correttamente",
+        "control": "Mantieni il pieno controllo"
+      },
+      "note": "Il confronto riflette un uso tipico. Un commercialista aggiunge valore reale per i casi complessi — flinkli è pensato per la fatturazione quotidiana dei freelance."
+    },
+    "security": {
+      "badge": "Dati in Svizzera",
+      "title": "I tuoi dati restano in Svizzera",
+      "body": "I dati di fatturazione sono sensibili. flinkli li archivia su infrastruttura ospitata in Svizzera, li cifra in transito e non li vende mai. Puoi esportare tutto in qualsiasi momento.",
+      "highlight": "Hosting svizzero · TLS in transito · cifratura a riposo · export in qualsiasi momento",
+      "points": {
+        "hosting": {
+          "title": "Hosting svizzero",
+          "desc": "I dati sono archiviati su infrastruttura situata in Svizzera."
+        },
+        "transit": {
+          "title": "Cifrato in transito",
+          "desc": "Tutto il traffico è protetto end-to-end con TLS."
+        },
+        "rest": {
+          "title": "Cifrato a riposo",
+          "desc": "I dati archiviati sono cifrati, mai in chiaro."
+        },
+        "export": {
+          "title": "Export in qualsiasi momento",
+          "desc": "Scarica fatture e dati quando vuoi."
+        },
+        "ownership": {
+          "title": "I dati sono tuoi",
+          "desc": "Le tue fatture e i tuoi clienti sono sempre tuoi."
+        },
+        "noResale": {
+          "title": "Mai venduti",
+          "desc": "Non vendiamo né condividiamo i tuoi dati con terzi."
+        }
+      }
+    },
+    "workflow": {
+      "title": "Si adatta a come lavori già",
+      "subtitle": "Dalla prima bozza al pagamento riconciliato — flinkli si collega agli strumenti che i freelance svizzeri già usano.",
+      "steps": {
+        "create": {
+          "title": "Crea",
+          "desc": "Prepara una QR-fattura conforme in pochi secondi con il tuo brand."
+        },
+        "send": {
+          "title": "Invia",
+          "desc": "Invia il PDF via e-mail o condividi un link."
+        },
+        "pay": {
+          "title": "Fatti pagare",
+          "desc": "I clienti scansionano il QR-code con qualsiasi app bancaria svizzera."
+        },
+        "reconcile": {
+          "title": "Riconcilia",
+          "desc": "Fatture pagate, aperte e scadute in una panoramica chiara."
+        }
+      }
+    },
+    "voices": {
+      "badge": "Primi utenti",
+      "title": "Cosa ci dicono i primi utenti",
+      "subtitle": "flinkli è appena partito. Queste sono impressioni oneste dei primi freelance — non recensioni pagate.",
+      "disclaimer": "Prodotto in fase iniziale. Feedback condiviso con permesso; nomi abbreviati per privacy.",
+      "items": {
+        "designer": {
+          "quote": "Ho inviato la mia prima QR-fattura in meno di due minuti. Il mio vecchio modello richiedeva mezz'ora.",
+          "role": "Designer freelance",
+          "place": "Zurigo"
+        },
+        "consultant": {
+          "quote": "Solo i promemoria mi risparmiano un'e-mail di sollecito ogni settimana.",
+          "role": "Consulente indipendente",
+          "place": "Ginevra"
+        },
+        "studio": {
+          "quote": "Finalmente uno strumento di fatturazione che parla italiano e capisce l'IVA svizzera.",
+          "role": "Titolare di piccolo studio",
+          "place": "Lugano"
+        }
+      }
+    },
     "faq": {
       "qr": {
         "q": "Che cos'è esattamente una QR-fattura svizzera?",

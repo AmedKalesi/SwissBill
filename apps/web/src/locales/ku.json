@@ -424,6 +424,100 @@
     },
     "faqTitle": "Pirsên pir têne pirsîn",
     "faqSubtitle": "Her tiştê ku berî destpêkirinê divê hûn zanibin.",
+    "compare": {
+      "title": "flinkli li hember Excel û jimêrkarekî",
+      "subtitle": "Nêrîneke rastgo ya li ser ka flinkli çawa bi du vebijarkên ku piraniya karkerên serbixwe yên Swîsreyî îro bikar tînin re tê berhev kirin.",
+      "feature": "Taybetmendî",
+      "excel": "Şablona Excel",
+      "accountant": "Jimêrkar",
+      "rows": {
+        "qr": "QR-fatûreyên lihevhatî",
+        "speed": "Fatûre di bin 2 deqeyan de",
+        "cost": "Ji bo her fatûreyê lêçûna dubare tune",
+        "reminders": "Bîranînên dravdanê yên otomatîk",
+        "languages": "Fatûreyên pirzimanî",
+        "vat": "KDV ya Swîsreyî rast tê birêvebirin",
+        "control": "Kontrola tevahî li te dimîne"
+      },
+      "note": "Berhevdan bikaranîna asayî nîşan dide. Jimêrkar ji bo rewşên tevlihev nirxa rast zêde dike — flinkli ji bo fatûreya rojane ya karkerên serbixwe hatiye çêkirin."
+    },
+    "security": {
+      "badge": "Cihê daneyan li Swîsreyê",
+      "title": "Daneyên te li Swîsreyê dimînin",
+      "body": "Daneyên fatûreyê hesas in. flinkli wan li ser binesaziya ku li Swîsreyê ye tomar dike, di dema veguhastinê de şîfre dike û qet wan nafiroşe. Tu dikarî her demê her tiştî derxî.",
+      "highlight": "Mêvandariya Swîsreyî · TLS di veguhastinê de · şîfrekirin di bêhnvedanê de · her dem derxistin",
+      "points": {
+        "hosting": {
+          "title": "Mêvandariya Swîsreyî",
+          "desc": "Dane li ser binesaziya ku li Swîsreyê ye têne tomarkirin."
+        },
+        "transit": {
+          "title": "Di veguhastinê de şîfre",
+          "desc": "Hemû trafîk bi TLS ji serî heta dawiyê tê parastin."
+        },
+        "rest": {
+          "title": "Di bêhnvedanê de şîfre",
+          "desc": "Daneyên tomarkirî şîfre ne, ne bi nivîsa zelal."
+        },
+        "export": {
+          "title": "Her dem derxistin",
+          "desc": "Fatûre û daneyên xwe her demê dakêşîne."
+        },
+        "ownership": {
+          "title": "Dane yên te ne",
+          "desc": "Fatûre û xerîdarên te her dem yên te ne."
+        },
+        "noResale": {
+          "title": "Qet nayê firotin",
+          "desc": "Em daneyên te nafiroşin an bi aliyên sêyem re parve nakin."
+        }
+      }
+    },
+    "workflow": {
+      "title": "Li gorî awayê ku tu jixwe dixebitî tê",
+      "subtitle": "Ji reşnivîsa yekem heta dravdana lihevhatî — flinkli bi amûrên ku karkerên serbixwe yên Swîsreyî jixwe bikar tînin ve tê girêdan.",
+      "steps": {
+        "create": {
+          "title": "Biafirîne",
+          "desc": "Di çend çirkeyan de bi markaya xwe fatûreyeke QR ya lihevhatî amade bike."
+        },
+        "send": {
+          "title": "Bişîne",
+          "desc": "PDF-ê rasterast bi e-nameyê bişîne an girêdanekê parve bike."
+        },
+        "pay": {
+          "title": "Drav bistîne",
+          "desc": "Xerîdar koda QR bi her sepana bankî ya Swîsreyî dixwînin."
+        },
+        "reconcile": {
+          "title": "Lihev bîne",
+          "desc": "Fatûreyên hatine dayîn, vekirî û derengmayî di nêrîneke zelal de bişopîne."
+        }
+      }
+    },
+    "voices": {
+      "badge": "Bikarhênerên pêşîn",
+      "title": "Bikarhênerên pêşîn ji me re çi dibêjin",
+      "subtitle": "flinkli nû dest pê kir. Ev bandorên rastgo yên karkerên serbixwe yên pêşîn in — ne nirxandinên bi pere.",
+      "disclaimer": "Berhema qonaxa destpêkê. Bertek bi destûr hatine parve kirin; nav ji bo nepenîtiyê hatine kurt kirin.",
+      "items": {
+        "designer": {
+          "quote": "Fatûreya xwe ya yekem a QR di bin du deqeyan de şand. Şablona min a berê nîv saet digirt.",
+          "role": "Sêwirvan a serbixwe",
+          "place": "Zurich"
+        },
+        "consultant": {
+          "quote": "Tenê bîranîn her hefte e-nameyeke şopandinê ji min re xilas dikin.",
+          "role": "Şêwirmendê serbixwe",
+          "place": "Geneva"
+        },
+        "studio": {
+          "quote": "Di dawiyê de amûreke fatûreyê ku bi Îtalî diaxive û KDV ya Swîsreyî fêm dike.",
+          "role": "Xwediyê studyoyeke piçûk",
+          "place": "Lugano"
+        }
+      }
+    },
     "faq": {
       "qr": {
         "q": "QR-fatûreya Swîsreyê tam çi ye?",
