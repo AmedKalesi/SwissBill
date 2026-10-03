@@ -161,32 +161,63 @@ swissbill/
 ### Gereksinimler
 
 - **Node.js ≥ 20**
-- **pnpm 12.8.1** (`corepack enable` ile etkinleştirilebilir)
+- **pnpm 12.8.1** — bu depo `packageManager` alanıyla sabitlenmiştir
 - **PostgreSQL** veritabanı (yerel veya Supabase)
+
+### pnpm'i çalıştırma
+
+Bu proje bir **pnpm workspace**'tir (`workspace:*` protokolü kullanır), bu yüzden
+`npm` veya `yarn` ile kurulum **çalışmaz**. Bazı makinelerde `pnpm` kurulu olsa
+bile kabuk PATH'inde görünmez veya corepack shim'i bozuk olabilir. Bu durumda
+depodaki taşınabilir sarmalayıcıyı kullanın:
+
+```bash
+# Sarmalayıcı, PATH/corepack sorunlarını atlar ve pnpm'i doğrudan çalıştırır.
+./scripts/pnpm install
+./scripts/pnpm --filter api lint
+```
+
+Sarmalayıcıyı düz `pnpm` gibi kullanmak için `scripts/` dizinini PATH'e ekleyin:
+
+```bash
+export PATH="$PWD/scripts:$PATH"
+pnpm install
+```
+
+Alternatif olarak pnpm'i normal şekilde kurup PATH'e ekleyebilirsiniz:
+
+```bash
+# corepack (Node 20+ ile birlikte gelir)
+corepack enable && corepack prepare pnpm@12.8.1 --activate
+
+# veya global kurulum
+npm install -g pnpm@12.8.1
+```
+
+> **Not:** `pnpm --version` çıktısı `command not found` veriyorsa ya da
+> `Cannot find module .../corepack/.../pnpm.cjs` hatası alıyorsanız,
+> `./scripts/pnpm` sarmalayıcısını kullanın.
 
 ### Adımlar
 
 ```bash
 # 1. Bağımlılıkları kur
-pnpm install
+./scripts/pnpm install
 
 # 2. Ortam değişkenlerini hazırla
 cp .env.example .env
 # .env dosyasını doldurun (bkz. Ortam Değişkenleri)
 
 # 3. Prisma client üret ve migration'ları uygula
-pnpm db:generate
-pnpm db:migrate
+./scripts/pnpm db:generate
+./scripts/pnpm db:migrate
 
 # 4. Geliştirme sunucularını başlat (web + api birlikte)
-pnpm dev
+./scripts/pnpm dev
 ```
 
 - Web: <http://localhost:5173>
 - API: <http://localhost:4000>
-
-> **Not:** `pnpm` PATH'te yoksa `corepack enable pnpm` komutunu çalıştırın veya
-> `npx pnpm@12.8.1 <komut>` kullanın.
 
 ---
 

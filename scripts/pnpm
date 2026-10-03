@@ -1,0 +1,40 @@
+#!/bin/sh
+# Portable pnpm launcher for this workspace.
+#
+# Some Node installations ship a corepack shim at `bin/pnpm` that fails with
+# "Cannot find module .../corepack/v1/pnpm/<version>/bin/pnpm.cjs" when the
+# corepack cache is incomplete. This wrapper bypasses the shim and runs the
+# globally installed pnpm entrypoint directly, so `./scripts/pnpm <cmd>` always
+# works regardless of PATH or corepack state.
+#
+# Usage:
+#   ./scripts/pnpm install
+#   ./scripts/pnpm --filter api lint
+#
+# Tip: add the repo's scripts dir to PATH to use it as plain `pnpm`:
+#   export PATH="$PWD/scripts:$PATH"
+
+set -e
+
+# Resolve the real Node binary (follow symlinks) and its install prefix.
+NODE_BIN="$(command -v node)"
+if command -v readlink >/dev/null 2>&1; then
+  RESOLVED="$(readlink -f "$NODE_BIN" 2>/dev/null || true)"
+  [ -n "$RESOLVED" ] && NODE_BIN="$RESOLVED"
+fi
+NODE_DIR="$(dirname "$NODE_BIN")"
+
+# Prefer the globally installed pnpm entrypoint next to Node.
+PNPM_MJS="$NODE_DIR/../lib/node_modules/pnpm/bin/pnpm.mjs"
+
+if [ -f "$PNPM_MJS" ]; then
+  exec node "$PNPM_MJS" "$@"
+fi
+
+# Fall back to a real pnpm on PATH (ignoring a broken corepack shim).
+if command -v pnpm >/dev/null 2>&1; then
+  exec pnpm "$@"
+fi
+
+echo "pnpm not found. Install it with: npm install -g pnpm@12.8.1" >&2
+exit 1
