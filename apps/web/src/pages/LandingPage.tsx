@@ -277,6 +277,17 @@ export function LandingPage() {
             </Link>
           </div>
         </div>
+        <div className="mx-auto mt-6 max-w-6xl border-t border-surface-200 px-4 pt-6 text-center text-xs text-surface-400 dark:border-surface-800 dark:text-surface-500">
+          {t("landing.productOf")}{" "}
+          <a
+            href="https://www.atelierlago.ch"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-surface-500 underline-offset-2 hover:text-brand-600 hover:underline dark:text-surface-400 dark:hover:text-brand-400"
+          >
+            www.atelierlago.ch
+          </a>
+        </div>
       </footer>
     </div>
   );
