@@ -277,16 +277,18 @@ export function LandingPage() {
             </Link>
           </div>
         </div>
-        <div className="mx-auto mt-6 max-w-6xl border-t border-surface-200 px-4 pt-6 text-center text-xs text-surface-400 dark:border-surface-800 dark:text-surface-500">
-          {t("landing.productOf")}{" "}
+        <div className="mx-auto mt-6 flex max-w-6xl flex-col items-center gap-2 border-t border-surface-200 px-4 pt-6 text-center text-xs text-surface-400 dark:border-surface-800 dark:text-surface-500">
           <a
             href="https://www.atelierlago.ch"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-medium text-surface-500 underline-offset-2 hover:text-brand-600 hover:underline dark:text-surface-400 dark:hover:text-brand-400"
+            className="group inline-flex items-center gap-2 font-medium text-surface-500 transition hover:text-brand-600 dark:text-surface-400 dark:hover:text-brand-400"
           >
-            www.atelierlago.ch
+            <span className="font-semibold tracking-wide">Atelier Lago</span>
+            <span className="h-3 w-px bg-surface-300 dark:bg-surface-600" aria-hidden="true" />
+            <span>Lugano · Schweiz</span>
           </a>
+          <p className="max-w-xl leading-relaxed">{t("landing.craftedBy")}</p>
         </div>
       </footer>
     </div>
