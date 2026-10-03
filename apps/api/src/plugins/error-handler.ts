@@ -5,6 +5,7 @@
 import type { FastifyInstance } from "fastify";
 import fp from "fastify-plugin";
 import { ZodError } from "zod";
+import Stripe from "stripe";
 
 export class AppError extends Error {
   constructor(
@@ -59,6 +60,60 @@ async function errorHandlerPlugin(app: FastifyInstance): Promise<void> {
           details: error.validation,
         },
       });
+    }
+
+    // Stripe hataları — kullanıcıya anlamlı mesaj döner, ham Stripe
+    // mesajını sızdırmaz. Kart hataları 402, diğerleri 502 (upstream).
+    if (rawError instanceof Stripe.errors.StripeError) {
+      app.log.error({ type: rawError.type, code: rawError.code }, rawError.message);
+
+      const isCardError = rawError.type === "StripeCardError";
+      const isRateLimit = rawError.type === "StripeRateLimitError";
+
+      return reply.code(isCardError ? 402 : isRateLimit ? 429 : 502).send({
+        error: {
+          code: isCardError
+            ? "PAYMENT_FAILED"
+            : isRateLimit
+              ? "PAYMENT_RATE_LIMITED"
+              : "PAYMENT_PROVIDER_ERROR",
+          message: isCardError
+            ? "Ödeme reddedildi. Lütfen kart bilgilerinizi kontrol edin."
+            : "Ödeme sağlayıcısıyla iletişim kurulamadı. Lütfen tekrar deneyin.",
+          details:
+            process.env.NODE_ENV === "production"
+              ? undefined
+              : { type: rawError.type, code: rawError.code },
+        },
+      });
+    }
+
+    // Prisma bilinen hataları — ham hata yerine anlamlı mesaj.
+    const prismaCode = (rawError as { code?: string }).code;
+    if (typeof prismaCode === "string" && prismaCode.startsWith("P")) {
+      app.log.error({ prismaCode }, error.message);
+
+      if (prismaCode === "P2002") {
+        return reply.code(409).send({
+          error: {
+            code: "CONFLICT",
+            message: "Bu kayıt zaten mevcut",
+          },
+        });
+      }
+      if (prismaCode === "P2025") {
+        return reply.code(404).send({
+          error: { code: "NOT_FOUND", message: "Kayıt bulunamadı" },
+        });
+      }
+      if (prismaCode === "P2003") {
+        return reply.code(409).send({
+          error: {
+            code: "FOREIGN_KEY_CONFLICT",
+            message: "İlişkili kayıtlar nedeniyle işlem tamamlanamadı",
+          },
+        });
+      }
     }
 
     // Beklenmeyen hatalar

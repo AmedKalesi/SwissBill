@@ -11,8 +11,8 @@ import {
 import { prisma } from "../db/prisma.js";
 import { AppError } from "../plugins/error-handler.js";
 import {
+  createInvoiceWithNumber,
   enforceInvoiceLimit,
-  generateInvoiceNumber,
   prepareInvoiceData,
 } from "../services/invoice.service.js";
 import { generateInvoicePdf } from "../services/pdf.service.js";
@@ -79,87 +79,100 @@ export async function invoiceRoutes(app: FastifyInstance): Promise<void> {
     if (!body.companyId) {
       throw new AppError("COMPANY_REQUIRED", "companyId gerekli", 400);
     }
+    // Daraltmayı closure içinde korumak için sabit değişkene al.
+    const companyId = body.companyId;
 
     const company = await prisma.company.findFirst({
-      where: { id: body.companyId, userId: request.user.sub },
+      where: { id: companyId, userId: request.user.sub },
     });
     if (!company) {
       throw new AppError("COMPANY_NOT_FOUND", "Şirket bulunamadı", 404);
     }
 
     const customer = await prisma.customer.findFirst({
-      where: { id: input.customerId, companyId: body.companyId },
+      where: { id: input.customerId, companyId },
     });
     if (!customer) {
       throw new AppError("CUSTOMER_NOT_FOUND", "Müşteri bulunamadı", 404);
     }
 
-    await enforceInvoiceLimit(request.user.sub, body.companyId);
+    await enforceInvoiceLimit(request.user.sub, companyId);
 
-    const invoiceNumber = await generateInvoiceNumber(body.companyId);
     const { totals, qrReference } = prepareInvoiceData(input);
 
-    // QR-fatura verisini Swiss Payment Standards 2026'ya göre doğrula
-    const qrErrors = validateQrBillData({
-      creditor: {
-        name: company.name,
-        addressLine1: company.addressLine1,
-        addressLine2: company.addressLine2,
-        postalCode: company.postalCode,
-        city: company.city,
-        country: company.country,
-        iban: company.iban,
-      },
-      debtor: {
-        name: customer.name,
-        addressLine1: customer.addressLine1,
-        addressLine2: customer.addressLine2,
-        postalCode: customer.postalCode,
-        city: customer.city,
-        country: customer.country,
-      },
-      amount: totals.total,
-      currency: input.currency,
-      reference: qrReference,
-      referenceType: input.qrReferenceType,
-      message: `Rechnung ${invoiceNumber}`,
-    });
-    if (qrErrors.length > 0) {
-      throw new AppError(
-        "QR_BILL_INVALID",
-        `QR-fatura verisi geçersiz: ${qrErrors.join(" ")}`,
-        422,
-      );
-    }
-
-    const invoice = await prisma.invoice.create({
-      data: {
-        companyId: body.companyId,
-        customerId: input.customerId,
-        invoiceNumber,
-        issueDate: new Date(input.issueDate),
-        dueDate: new Date(input.dueDate),
-        subtotal: totals.subtotal,
-        vatAmount: totals.vatAmount,
-        total: totals.total,
-        currency: input.currency,
-        status: input.status,
-        qrReference,
-        qrReferenceType: input.qrReferenceType,
-        notes: input.notes ?? null,
-        items: {
-          create: totals.lines.map((line, index) => ({
-            description: line.description,
-            quantity: line.quantity,
-            unitPrice: line.unitPrice,
-            vatRate: line.vatRate,
-            lineTotal: line.lineTotal,
-            sortOrder: index,
-          })),
+    // QR-fatura verisini Swiss Payment Standards 2026'ya göre doğrula.
+    // Doğrulama fatura numarasına bağlı olduğu için (mesaj alanı) retry
+    // döngüsünün içinde, her denemede yeniden çalıştırılır.
+    const validateForNumber = (invoiceNumber: string): void => {
+      const qrErrors = validateQrBillData({
+        creditor: {
+          name: company.name,
+          addressLine1: company.addressLine1,
+          addressLine2: company.addressLine2,
+          postalCode: company.postalCode,
+          city: company.city,
+          country: company.country,
+          iban: company.iban,
         },
+        debtor: {
+          name: customer.name,
+          addressLine1: customer.addressLine1,
+          addressLine2: customer.addressLine2,
+          postalCode: customer.postalCode,
+          city: customer.city,
+          country: customer.country,
+        },
+        amount: totals.total,
+        currency: input.currency,
+        reference: qrReference,
+        referenceType: input.qrReferenceType,
+        message: `Rechnung ${invoiceNumber}`,
+      });
+      if (qrErrors.length > 0) {
+        throw new AppError(
+          "QR_BILL_INVALID",
+          `QR-fatura verisi geçersiz: ${qrErrors.join(" ")}`,
+          422,
+        );
+      }
+    };
+
+    // Eşzamanlı isteklerde aynı fatura numarasının iki kez üretilmesini
+    // önlemek için retry sarmalayıcısı kullanılır (P2002 → yeniden dene).
+    const invoice = await createInvoiceWithNumber(
+      companyId,
+      async (invoiceNumber) => {
+        validateForNumber(invoiceNumber);
+        return prisma.invoice.create({
+          data: {
+            companyId,
+            customerId: input.customerId,
+            invoiceNumber,
+            issueDate: new Date(input.issueDate),
+            dueDate: new Date(input.dueDate),
+            subtotal: totals.subtotal,
+            vatAmount: totals.vatAmount,
+            total: totals.total,
+            currency: input.currency,
+            status: input.status,
+            qrReference,
+            qrReferenceType: input.qrReferenceType,
+            notes: input.notes ?? null,
+            items: {
+              create: totals.lines.map((line, index) => ({
+                description: line.description,
+                quantity: line.quantity,
+                unitPrice: line.unitPrice,
+                vatRate: line.vatRate,
+                lineTotal: line.lineTotal,
+                sortOrder: index,
+              })),
+            },
+          },
+          include: { items: true, customer: true },
+        });
       },
-      include: { items: true, customer: true },
-    });
+    );
 
     return reply.code(201).send({ data: invoice });
   });

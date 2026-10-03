@@ -10,7 +10,7 @@ import {
 } from "@flinkli/shared";
 import { prisma } from "../db/prisma.js";
 import { AppError } from "../plugins/error-handler.js";
-import { generateInvoiceNumber } from "../services/invoice.service.js";
+import { createInvoiceWithNumber } from "../services/invoice.service.js";
 
 /** Sıradaki teklif numarasını üretir. Format: ANG-{YIL}-{SIRA} */
 async function generateQuoteNumber(companyId: string): Promise<string> {
@@ -293,47 +293,52 @@ export async function quoteRoutes(app: FastifyInstance): Promise<void> {
       );
     }
 
-    const invoiceNumber = await generateInvoiceNumber(quote.companyId);
     const issueDate = new Date();
     const dueDate = new Date(issueDate);
     dueDate.setDate(dueDate.getDate() + 30);
 
-    const invoice = await prisma.$transaction(async (tx) => {
-      const created = await tx.invoice.create({
-        data: {
-          companyId: quote.companyId,
-          customerId: quote.customerId,
-          invoiceNumber,
-          issueDate,
-          dueDate,
-          subtotal: quote.subtotal,
-          vatAmount: quote.vatAmount,
-          total: quote.total,
-          currency: quote.currency,
-          status: "draft",
-          qrReferenceType: "NON",
-          notes: quote.notes ?? null,
-          items: {
-            create: quote.items.map((item, index) => ({
-              description: item.description,
-              quantity: item.quantity,
-              unitPrice: item.unitPrice,
-              vatRate: item.vatRate,
-              lineTotal: item.lineTotal,
-              sortOrder: index,
-            })),
-          },
-        },
-        include: { items: true },
-      });
+    // Eşzamanlı dönüşümlerde fatura numarası çakışmasını önlemek için
+    // retry sarmalayıcısı kullanılır (P2002 → yeniden dene).
+    const invoice = await createInvoiceWithNumber(
+      quote.companyId,
+      (invoiceNumber) =>
+        prisma.$transaction(async (tx) => {
+          const created = await tx.invoice.create({
+            data: {
+              companyId: quote.companyId,
+              customerId: quote.customerId,
+              invoiceNumber,
+              issueDate,
+              dueDate,
+              subtotal: quote.subtotal,
+              vatAmount: quote.vatAmount,
+              total: quote.total,
+              currency: quote.currency,
+              status: "draft",
+              qrReferenceType: "NON",
+              notes: quote.notes ?? null,
+              items: {
+                create: quote.items.map((item, index) => ({
+                  description: item.description,
+                  quantity: item.quantity,
+                  unitPrice: item.unitPrice,
+                  vatRate: item.vatRate,
+                  lineTotal: item.lineTotal,
+                  sortOrder: index,
+                })),
+              },
+            },
+            include: { items: true },
+          });
 
-      await tx.quote.update({
-        where: { id },
-        data: { status: "converted", convertedInvoiceId: created.id },
-      });
+          await tx.quote.update({
+            where: { id },
+            data: { status: "converted", convertedInvoiceId: created.id },
+          });
 
-      return created;
-    });
+          return created;
+        }),
+    );
 
     return reply.code(201).send({ data: invoice });
   });
