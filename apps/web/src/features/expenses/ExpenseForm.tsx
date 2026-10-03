@@ -6,6 +6,7 @@ import { api } from "@/lib/api";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
+import { useToast } from "@/components/ui/Toast";
 import { useCompany } from "@/features/company/CompanyContext";
 
 interface ExpenseFormProps {
@@ -21,6 +22,7 @@ function toDateInput(value: string | null | undefined): string {
 export function ExpenseForm({ expense, onSuccess, onCancel }: ExpenseFormProps) {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
+  const toast = useToast();
   const { companies, activeCompanyId } = useCompany();
 
   const [companyId, setCompanyId] = useState(
@@ -41,7 +43,6 @@ export function ExpenseForm({ expense, onSuccess, onCancel }: ExpenseFormProps) 
   const [reference, setReference] = useState(expense?.reference ?? "");
   const [deductible, setDeductible] = useState(expense?.deductible ?? true);
   const [notes, setNotes] = useState(expense?.notes ?? "");
-  const [error, setError] = useState<string | null>(null);
 
   const mutation = useMutation({
     mutationFn: (payload: Record<string, unknown>) =>
@@ -51,19 +52,19 @@ export function ExpenseForm({ expense, onSuccess, onCancel }: ExpenseFormProps) 
     onSuccess: (saved) => {
       void queryClient.invalidateQueries({ queryKey: ["expenses"] });
       void queryClient.invalidateQueries({ queryKey: ["expenses-summary"] });
+      toast.success(t("common.saved"));
       onSuccess(saved);
     },
     onError: (err: unknown) => {
-      setError(err instanceof Error ? err.message : t("errors.generic"));
+      toast.error(err instanceof Error ? err.message : t("errors.generic"));
     },
   });
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    setError(null);
 
     if (!companyId || !date || !description.trim() || !amount) {
-      setError(t("errors.validation"));
+      toast.error(t("errors.validation"));
       return;
     }
 
@@ -174,8 +175,6 @@ export function ExpenseForm({ expense, onSuccess, onCancel }: ExpenseFormProps) 
           onChange={(event) => setNotes(event.target.value)}
         />
       </div>
-
-      {error && <p className="text-sm text-red-600">{error}</p>}
 
       <div className="flex justify-end gap-2 pt-2">
         <Button type="button" variant="secondary" onClick={onCancel}>

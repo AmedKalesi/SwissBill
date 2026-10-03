@@ -6,6 +6,7 @@ import { api, ApiRequestError } from "@/lib/api";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
+import { useToast } from "@/components/ui/Toast";
 import { useCompany } from "@/features/company/CompanyContext";
 
 interface CustomerFormProps {
@@ -33,8 +34,8 @@ export function CustomerForm({
 }: CustomerFormProps) {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
+  const toast = useToast();
   const { companies, activeCompanyId } = useCompany();
-  const [error, setError] = useState<string | null>(null);
 
   const [form, setForm] = useState<FormState>({
     companyId: customer?.companyId ?? activeCompanyId ?? "",
@@ -65,10 +66,11 @@ export function CustomerForm({
     },
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: ["customers"] });
+      toast.success(t("common.saved"));
       onSuccess();
     },
     onError: (err) => {
-      setError(
+      toast.error(
         err instanceof ApiRequestError ? err.message : t("common.error"),
       );
     },
@@ -80,7 +82,6 @@ export function CustomerForm({
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    setError(null);
     mutation.mutate(form);
   };
 
@@ -155,12 +156,6 @@ export function CustomerForm({
         value={form.vatNumber}
         onChange={(event) => update("vatNumber", event.target.value)}
       />
-
-      {error && (
-        <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-swiss-red">
-          {error}
-        </p>
-      )}
 
       <div className="flex justify-end gap-2 pt-2">
         <Button type="button" variant="secondary" onClick={onCancel}>

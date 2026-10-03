@@ -6,6 +6,7 @@ import { api } from "@/lib/api";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
+import { useToast } from "@/components/ui/Toast";
 import { useCompany } from "@/features/company/CompanyContext";
 
 interface ProjectFormProps {
@@ -17,6 +18,7 @@ interface ProjectFormProps {
 export function ProjectForm({ project, onSuccess, onCancel }: ProjectFormProps) {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
+  const toast = useToast();
   const { companies, activeCompanyId } = useCompany();
 
   const [companyId, setCompanyId] = useState(
@@ -31,7 +33,6 @@ export function ProjectForm({ project, onSuccess, onCancel }: ProjectFormProps) 
   const [budget, setBudget] = useState(
     project?.budget != null ? String(project.budget) : "",
   );
-  const [error, setError] = useState<string | null>(null);
 
   const customersQuery = useQuery({
     queryKey: ["customers", companyId],
@@ -49,19 +50,19 @@ export function ProjectForm({ project, onSuccess, onCancel }: ProjectFormProps) 
         : api.post<Project>("/projects", payload),
     onSuccess: (saved) => {
       void queryClient.invalidateQueries({ queryKey: ["projects"] });
+      toast.success(t("common.saved"));
       onSuccess(saved);
     },
     onError: (err: unknown) => {
-      setError(err instanceof Error ? err.message : t("errors.generic"));
+      toast.error(err instanceof Error ? err.message : t("errors.generic"));
     },
   });
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    setError(null);
 
     if (!companyId || !customerId || !name.trim()) {
-      setError(t("errors.validation"));
+      toast.error(t("errors.validation"));
       return;
     }
 
@@ -136,8 +137,6 @@ export function ProjectForm({ project, onSuccess, onCancel }: ProjectFormProps) 
           onChange={(event) => setBudget(event.target.value)}
         />
       </div>
-
-      {error && <p className="text-sm text-red-600">{error}</p>}
 
       <div className="flex justify-end gap-2 pt-2">
         <Button type="button" variant="secondary" onClick={onCancel}>

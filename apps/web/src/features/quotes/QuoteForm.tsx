@@ -11,6 +11,7 @@ import { api } from "@/lib/api";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
+import { useToast } from "@/components/ui/Toast";
 import { useCompany } from "@/features/company/CompanyContext";
 
 interface QuoteFormProps {
@@ -33,6 +34,7 @@ function toDateInput(value: string | null | undefined): string {
 export function QuoteForm({ quote, onSuccess, onCancel }: QuoteFormProps) {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
+  const toast = useToast();
   const { companies, activeCompanyId } = useCompany();
 
   const [companyId, setCompanyId] = useState(
@@ -54,8 +56,6 @@ export function QuoteForm({ quote, onSuccess, onCancel }: QuoteFormProps) {
         }))
       : [{ ...emptyItem }],
   );
-  const [error, setError] = useState<string | null>(null);
-
   const customersQuery = useQuery({
     queryKey: ["customers", companyId],
     queryFn: () =>
@@ -72,10 +72,11 @@ export function QuoteForm({ quote, onSuccess, onCancel }: QuoteFormProps) {
         : api.post<Quote>("/quotes", payload),
     onSuccess: (saved) => {
       void queryClient.invalidateQueries({ queryKey: ["quotes"] });
+      toast.success(t("common.saved"));
       onSuccess(saved);
     },
     onError: (err: unknown) => {
-      setError(err instanceof Error ? err.message : t("errors.generic"));
+      toast.error(err instanceof Error ? err.message : t("errors.generic"));
     },
   });
 
@@ -103,16 +104,15 @@ export function QuoteForm({ quote, onSuccess, onCancel }: QuoteFormProps) {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    setError(null);
 
     if (!companyId || !customerId || !issueDate || !validUntil) {
-      setError(t("errors.validation"));
+      toast.error(t("errors.validation"));
       return;
     }
 
     const validItems = items.filter((item) => item.description.trim());
     if (validItems.length === 0) {
-      setError(t("errors.validation"));
+      toast.error(t("errors.validation"));
       return;
     }
 
@@ -254,8 +254,6 @@ export function QuoteForm({ quote, onSuccess, onCancel }: QuoteFormProps) {
           onChange={(event) => setNotes(event.target.value)}
         />
       </div>
-
-      {error && <p className="text-sm text-red-600">{error}</p>}
 
       <div className="flex justify-end gap-2 pt-2">
         <Button type="button" variant="secondary" onClick={onCancel}>

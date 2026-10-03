@@ -13,6 +13,7 @@ import { api } from "@/lib/api";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
+import { useToast } from "@/components/ui/Toast";
 import { useCompany } from "@/features/company/CompanyContext";
 
 interface RecurringFormProps {
@@ -35,6 +36,7 @@ export function RecurringForm({
 }: RecurringFormProps) {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
+  const toast = useToast();
   const { companies, activeCompanyId } = useCompany();
 
   const [companyId, setCompanyId] = useState(
@@ -65,7 +67,6 @@ export function RecurringForm({
   const [items, setItems] = useState<InvoiceItemInputLike[]>(
     recurring?.items?.length ? recurring.items : [{ ...emptyItem }],
   );
-  const [error, setError] = useState<string | null>(null);
 
   const customersQuery = useQuery({
     queryKey: ["customers", companyId],
@@ -83,10 +84,11 @@ export function RecurringForm({
         : api.post<RecurringInvoice>("/recurring-invoices", payload),
     onSuccess: (saved) => {
       void queryClient.invalidateQueries({ queryKey: ["recurring-invoices"] });
+      toast.success(t("common.saved"));
       onSuccess(saved);
     },
     onError: (err: unknown) => {
-      setError(err instanceof Error ? err.message : t("errors.generic"));
+      toast.error(err instanceof Error ? err.message : t("errors.generic"));
     },
   });
 
@@ -114,16 +116,15 @@ export function RecurringForm({
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    setError(null);
 
     if (!companyId || !customerId || !name.trim() || !startDate) {
-      setError(t("errors.validation"));
+      toast.error(t("errors.validation"));
       return;
     }
 
     const validItems = items.filter((item) => item.description.trim());
     if (validItems.length === 0) {
-      setError(t("errors.validation"));
+      toast.error(t("errors.validation"));
       return;
     }
 
@@ -325,8 +326,6 @@ export function RecurringForm({
           onChange={(event) => setNotes(event.target.value)}
         />
       </div>
-
-      {error && <p className="text-sm text-red-600">{error}</p>}
 
       <div className="flex justify-end gap-2 pt-2">
         <Button type="button" variant="secondary" onClick={onCancel}>

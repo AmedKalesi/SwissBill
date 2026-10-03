@@ -14,6 +14,7 @@ import { formatMoney, toDateInputValue } from "@/lib/format";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
+import { useToast } from "@/components/ui/Toast";
 import { useCompany } from "@/features/company/CompanyContext";
 
 interface InvoiceFormProps {
@@ -51,9 +52,9 @@ export function InvoiceForm({ invoice, seedInvoice, onSuccess, onCancel }: Invoi
   const initial = invoice ?? seedInvoice;
   const { t, i18n } = useTranslation();
   const queryClient = useQueryClient();
+  const toast = useToast();
   const { companies, activeCompanyId } = useCompany();
   const locale = i18n.resolvedLanguage ?? "de-CH";
-  const [error, setError] = useState<string | null>(null);
 
   const [companyId, setCompanyId] = useState(
     initial?.companyId ?? activeCompanyId ?? "",
@@ -122,10 +123,11 @@ export function InvoiceForm({ invoice, seedInvoice, onSuccess, onCancel }: Invoi
     },
     onSuccess: (result) => {
       void queryClient.invalidateQueries({ queryKey: ["invoices"] });
+      toast.success(t("common.saved"));
       onSuccess(result);
     },
     onError: (err) => {
-      setError(
+      toast.error(
         err instanceof ApiRequestError ? err.message : t("common.error"),
       );
     },
@@ -145,8 +147,10 @@ export function InvoiceForm({ invoice, seedInvoice, onSuccess, onCancel }: Invoi
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    setError(null);
-    if (dueDate < issueDate) { setError(t("workspace.invalidDates")); return; }
+    if (dueDate < issueDate) {
+      toast.error(t("workspace.invalidDates"));
+      return;
+    }
     mutation.mutate();
   };
 
@@ -316,12 +320,6 @@ export function InvoiceForm({ invoice, seedInvoice, onSuccess, onCancel }: Invoi
           <span>{formatMoney(totals.total, currency, locale)}</span>
         </div>
       </div>
-
-      {error && (
-        <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-swiss-red">
-          {error}
-        </p>
-      )}
 
       <div className="flex justify-end gap-2">
         <Button type="button" variant="secondary" onClick={onCancel}>
