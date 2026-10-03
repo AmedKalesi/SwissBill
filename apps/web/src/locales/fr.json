@@ -421,6 +421,7 @@
     "navRegister": "Commencer gratuitement",
     "craftedBy": "Conçu et développé par Atelier Lago à Lugano. Savoir-faire suisse, qualité sans compromis.",
     "heroTitle": "Factures QR pour freelances suisses — en quelques secondes",
+    "heroTitleAccent": "en quelques secondes",
     "heroSubtitle": "Créez des factures QR conformes, gérez vos clients et suivez vos paiements. Sans diplôme de comptabilité.",
     "ctaPrimary": "Commencer gratuitement",
     "ctaSecondary": "Essayer le générateur QR",
@@ -527,6 +528,54 @@
       "total": "Total",
       "ibanHint": "Généré avec un IBAN de créancier d'exemple. Vos vraies factures utilisent votre propre IBAN.",
       "qrMessage": "Facture"
+    },
+    "stats": {
+      "languages": "Langues",
+      "vatRates": "Taux de TVA",
+      "setup": "Jusqu'à la 1re facture"
+    },
+    "trust": {
+      "qrStandard": "QR-facture suisse (SPC 2026)",
+      "vat": "Tous les taux de TVA suisses inclus",
+      "languages": "6 langues d'origine",
+      "swissHosted": "Données hébergées en Suisse",
+      "pdf": "Factures PDF prêtes à imprimer",
+      "reminders": "Rappels de paiement automatiques"
+    },
+    "billing": {
+      "monthly": "Mensuel",
+      "yearly": "Annuel",
+      "save": "2 mois offerts",
+      "billedYearly": "facturé annuellement",
+      "toggleLabel": "Basculer la facturation annuelle"
+    },
+    "faqTitle": "Questions fréquentes",
+    "faqSubtitle": "Tout ce qu'il faut savoir avant de commencer.",
+    "faq": {
+      "qr": {
+        "q": "Qu'est-ce qu'une QR-facture suisse exactement ?",
+        "a": "La QR-facture est le bulletin de versement suisse officiel doté d'un code QR contenant toutes les données de paiement. flinkli génère des QR-factures entièrement conformes (Swiss Payment Standards 2026) que vos clients peuvent scanner avec n'importe quelle app bancaire suisse."
+      },
+      "swiss": {
+        "q": "flinkli est-il réservé aux entreprises suisses ?",
+        "a": "flinkli est conçu autour des règles de facturation suisses — QR-factures, taux de TVA suisses et CHF — il convient donc surtout aux indépendants et petites entreprises suisses. Vous pouvez toutefois facturer en EUR et dans d'autres devises."
+      },
+      "languages": {
+        "q": "Quelles langues sont prises en charge ?",
+        "a": "L'interface et vos factures sont disponibles en allemand, anglais, français, italien, turc et kurde. Vous pouvez changer de langue à tout moment sans perdre de données."
+      },
+      "data": {
+        "q": "Où mes données sont-elles stockées ?",
+        "a": "Vos données sont stockées sur une infrastructure hébergée en Suisse et chiffrées en transit. Vous gardez le contrôle et pouvez exporter vos factures à tout moment."
+      },
+      "cancel": {
+        "q": "Puis-je annuler à tout moment ?",
+        "a": "Oui. Sans engagement ni frais d'annulation. Vous pouvez passer au plan gratuit ou annuler quand vous le souhaitez — vos données restent exportables."
+      },
+      "support": {
+        "q": "Proposez-vous un support ?",
+        "a": "Oui. En tant que produit en phase de démarrage, le support vient directement du fondateur. Écrivez-nous et vous obtiendrez une vraie réponse, généralement en un jour ouvrable."
+      }
     }
   },
   "errors": {

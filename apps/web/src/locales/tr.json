@@ -294,6 +294,7 @@
     "navRegister": "Ücretsiz başla",
     "craftedBy": "Lugano'daki Atelier Lago tarafından tasarlandı ve geliştirildi. İsviçre işçiliği, ödün vermeyen kalite.",
     "heroTitle": "İsviçreli serbest çalışanlar için QR faturalar — saniyeler içinde",
+    "heroTitleAccent": "saniyeler içinde",
     "heroSubtitle": "Standartlara uygun QR faturalar oluşturun, müşterileri yönetin ve ödemeleri takip edin. Muhasebe eğitimi gerekmez.",
     "ctaPrimary": "Ücretsiz başla",
     "ctaSecondary": "QR oluşturucuyu dene",
@@ -400,6 +401,54 @@
       "total": "Toplam",
       "ibanHint": "Örnek alacaklı IBAN'ı ile üretilmiştir. Gerçek faturalarınızda kendi IBAN'ınız kullanılır.",
       "qrMessage": "Rechnung"
+    },
+    "stats": {
+      "languages": "Dil",
+      "vatRates": "KDV oranı",
+      "setup": "İlk faturaya kadar"
+    },
+    "trust": {
+      "qrStandard": "İsviçre QR-fatura standardı (SPC 2026)",
+      "vat": "Tüm İsviçre KDV oranları hazır",
+      "languages": "6 dil kutudan çıkar",
+      "swissHosted": "İsviçre'de barındırılan veri",
+      "pdf": "Baskıya hazır PDF faturalar",
+      "reminders": "Otomatik ödeme hatırlatmaları"
+    },
+    "billing": {
+      "monthly": "Aylık",
+      "yearly": "Yıllık",
+      "save": "2 ay ücretsiz",
+      "billedYearly": "yıllık faturalandırılır",
+      "toggleLabel": "Yıllık faturalandırmayı değiştir"
+    },
+    "faqTitle": "Sık sorulan sorular",
+    "faqSubtitle": "Başlamadan önce bilmeniz gereken her şey.",
+    "faq": {
+      "qr": {
+        "q": "İsviçre QR-faturası tam olarak nedir?",
+        "a": "QR-fatura, tüm ödeme verilerini taşıyan QR kodlu resmî İsviçre ödeme fişidir. flinkli, müşterilerinizin herhangi bir İsviçre bankacılık uygulamasıyla tarayabileceği, standarda tam uyumlu QR-faturalar (Swiss Payment Standards 2026) üretir."
+      },
+      "swiss": {
+        "q": "flinkli yalnızca İsviçre'deki işletmeler için mi?",
+        "a": "flinkli İsviçre fatura kuralları etrafında kurulmuştur — QR-faturalar, İsviçre KDV oranları ve CHF — bu yüzden en çok İsviçreli serbest çalışanlara ve küçük işletmelere uyar. Yine de EUR ve diğer para birimlerinde fatura kesebilirsiniz."
+      },
+      "languages": {
+        "q": "Hangi diller destekleniyor?",
+        "a": "Arayüz ve faturalarınız Almanca, İngilizce, Fransızca, İtalyanca, Türkçe ve Kürtçe olarak kullanılabilir. Veri kaybetmeden dilediğiniz an dil değiştirebilirsiniz."
+      },
+      "data": {
+        "q": "Verilerim nerede saklanıyor?",
+        "a": "Verileriniz İsviçre'de barındırılan altyapıda saklanır ve aktarım sırasında şifrelenir. Kontrol sizde kalır ve faturalarınızı dilediğiniz an dışa aktarabilirsiniz."
+      },
+      "cancel": {
+        "q": "Dilediğim an iptal edebilir miyim?",
+        "a": "Evet. Taahhüt yok, iptal ücreti yok. Dilediğiniz an ücretsiz plana geçebilir veya iptal edebilirsiniz — verileriniz dışa aktarılabilir kalır."
+      },
+      "support": {
+        "q": "Destek sunuyor musunuz?",
+        "a": "Evet. Erken aşamada bir ürün olarak destek doğrudan kurucudan gelir. Bize yazın, genellikle bir iş günü içinde gerçek bir yanıt alırsınız."
+      }
     }
   },
   "errors": {

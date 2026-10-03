@@ -48,6 +48,112 @@
   .dark .app-shell table thead { background: #1d2939; }
   .dark .app-shell table tbody tr:hover { background: #1d2939; }
 }
+
+/* ---------------------------------------------------------------------------
+   Motion & interaction layer
+   ---------------------------------------------------------------------------
+   Everything here is additive: the page renders identically without JS, and
+   every animation is disabled under `prefers-reduced-motion` (see the media
+   query at the bottom of this file). Keyframes live in plain CSS rather than
+   the Tailwind config so they stay greppable and easy to tune.
+   --------------------------------------------------------------------------- */
+@layer utilities {
+  /* Scroll-reveal: elements start slightly offset + transparent, then settle
+     into place once `RevealOnScroll` flips `data-revealed="true"`. */
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 620ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+  .reveal[data-revealed="true"] {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Brand gradient text — used on the hero headline accent. */
+  .text-gradient-brand {
+    background-image: linear-gradient(100deg, #e23b2e 0%, #d52b1e 45%, #93190f 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .dark .text-gradient-brand {
+    background-image: linear-gradient(100deg, #f27a70 0%, #e23b2e 50%, #f7aaa3 100%);
+  }
+
+  /* Slow ambient float for decorative hero orbs. */
+  .animate-float-slow {
+    animation: flinkli-float 9s ease-in-out infinite;
+  }
+  .animate-float-slower {
+    animation: flinkli-float 13s ease-in-out infinite reverse;
+  }
+
+  /* Pulsing ring behind the primary CTA / live badge. */
+  .animate-pulse-ring {
+    animation: flinkli-pulse-ring 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* Shimmer sweep for the "live" badge and highlighted plan. */
+  .animate-shimmer {
+    background-size: 200% 100%;
+    animation: flinkli-shimmer 3.2s linear infinite;
+  }
+
+  /* Entrance for the hero block — runs once on mount. */
+  .animate-rise-in {
+    animation: flinkli-rise-in 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  /* Marquee track for the trust bar. */
+  .animate-marquee {
+    animation: flinkli-marquee 32s linear infinite;
+  }
+  .marquee-mask {
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  }
+
+  /* Card lift used on feature/pricing hover. */
+  .card-lift {
+    transition:
+      transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 260ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 260ms ease;
+  }
+  .card-lift:hover {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes flinkli-float {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(0, -22px, 0) scale(1.04); }
+}
+
+@keyframes flinkli-pulse-ring {
+  0% { transform: scale(0.9); opacity: 0.55; }
+  70% { transform: scale(1.6); opacity: 0; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+@keyframes flinkli-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes flinkli-rise-in {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes flinkli-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }

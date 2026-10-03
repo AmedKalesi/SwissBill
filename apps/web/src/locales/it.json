@@ -421,6 +421,7 @@
     "navRegister": "Inizia gratis",
     "craftedBy": "Progettato e sviluppato da Atelier Lago a Lugano. Artigianato svizzero, qualità senza compromessi.",
     "heroTitle": "Fatture QR per freelance svizzeri — in pochi secondi",
+    "heroTitleAccent": "in pochi secondi",
     "heroSubtitle": "Crea fatture QR conformi, gestisci i clienti e tieni traccia dei pagamenti. Senza laurea in contabilità.",
     "ctaPrimary": "Inizia gratis",
     "ctaSecondary": "Prova il generatore QR",
@@ -527,6 +528,54 @@
       "total": "Totale",
       "ibanHint": "Generato con un IBAN creditore di esempio. Le fatture reali usano il tuo IBAN.",
       "qrMessage": "Fattura"
+    },
+    "stats": {
+      "languages": "Lingue",
+      "vatRates": "Aliquote IVA",
+      "setup": "Fino alla prima fattura"
+    },
+    "trust": {
+      "qrStandard": "QR-fattura svizzera (SPC 2026)",
+      "vat": "Tutte le aliquote IVA svizzere incluse",
+      "languages": "6 lingue di serie",
+      "swissHosted": "Dati ospitati in Svizzera",
+      "pdf": "Fatture PDF pronte per la stampa",
+      "reminders": "Solleciti di pagamento automatici"
+    },
+    "billing": {
+      "monthly": "Mensile",
+      "yearly": "Annuale",
+      "save": "2 mesi gratis",
+      "billedYearly": "fatturato annualmente",
+      "toggleLabel": "Attiva/disattiva fatturazione annuale"
+    },
+    "faqTitle": "Domande frequenti",
+    "faqSubtitle": "Tutto ciò che devi sapere prima di iniziare.",
+    "faq": {
+      "qr": {
+        "q": "Che cos'è esattamente una QR-fattura svizzera?",
+        "a": "La QR-fattura è la polizza di versamento svizzera ufficiale con un codice QR che contiene tutti i dati di pagamento. flinkli genera QR-fatture pienamente conformi (Swiss Payment Standards 2026) che i tuoi clienti possono scansionare con qualsiasi app bancaria svizzera."
+      },
+      "swiss": {
+        "q": "flinkli è solo per aziende svizzere?",
+        "a": "flinkli è costruito attorno alle regole di fatturazione svizzere — QR-fatture, aliquote IVA svizzere e CHF — quindi si adatta meglio a liberi professionisti e piccole imprese svizzere. Puoi comunque fatturare in EUR e in altre valute."
+      },
+      "languages": {
+        "q": "Quali lingue sono supportate?",
+        "a": "L'interfaccia e le tue fatture sono disponibili in tedesco, inglese, francese, italiano, turco e curdo. Puoi cambiare lingua in qualsiasi momento senza perdere dati."
+      },
+      "data": {
+        "q": "Dove vengono archiviati i miei dati?",
+        "a": "I tuoi dati sono archiviati su infrastruttura ospitata in Svizzera e crittografati in transito. Mantieni il controllo e puoi esportare le tue fatture in qualsiasi momento."
+      },
+      "cancel": {
+        "q": "Posso disdire in qualsiasi momento?",
+        "a": "Sì. Nessun vincolo e nessun costo di disdetta. Puoi passare al piano gratuito o disdire quando vuoi — i tuoi dati restano esportabili."
+      },
+      "support": {
+        "q": "Offrite assistenza?",
+        "a": "Sì. Essendo un prodotto in fase iniziale, l'assistenza arriva direttamente dal fondatore. Scrivici e riceverai una risposta reale, di solito entro un giorno lavorativo."
+      }
     }
   },
   "errors": {

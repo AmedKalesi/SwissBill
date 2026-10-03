@@ -421,6 +421,7 @@
     "navRegister": "Get started free",
     "craftedBy": "Designed and engineered by Atelier Lago in Lugano. Swiss craft, uncompromising quality.",
     "heroTitle": "QR invoices for Swiss freelancers — in seconds",
+    "heroTitleAccent": "in seconds",
     "heroSubtitle": "Create compliant QR-bills, manage customers and track payments. No accounting degree required.",
     "ctaPrimary": "Start for free",
     "ctaSecondary": "Try the QR generator",
@@ -527,6 +528,54 @@
       "total": "Total",
       "ibanHint": "Generated with a sample creditor IBAN. Real invoices use your own IBAN.",
       "qrMessage": "Invoice"
+    },
+    "stats": {
+      "languages": "Languages",
+      "vatRates": "VAT rates",
+      "setup": "To first invoice"
+    },
+    "trust": {
+      "qrStandard": "Swiss QR-bill standard (SPC 2026)",
+      "vat": "All Swiss VAT rates built in",
+      "languages": "6 languages out of the box",
+      "swissHosted": "Swiss-hosted data",
+      "pdf": "Print-ready PDF invoices",
+      "reminders": "Automatic payment reminders"
+    },
+    "billing": {
+      "monthly": "Monthly",
+      "yearly": "Yearly",
+      "save": "2 months free",
+      "billedYearly": "billed yearly",
+      "toggleLabel": "Toggle yearly billing"
+    },
+    "faqTitle": "Frequently asked questions",
+    "faqSubtitle": "Everything you need to know before you start.",
+    "faq": {
+      "qr": {
+        "q": "What exactly is a Swiss QR-bill?",
+        "a": "A QR-bill is the official Swiss payment slip with a QR code that carries all payment data. flinkli generates fully compliant QR-bills (Swiss Payment Standards 2026) that your customers can scan with any Swiss banking app."
+      },
+      "swiss": {
+        "q": "Is flinkli only for Swiss businesses?",
+        "a": "flinkli is built around Swiss invoicing rules — QR-bills, Swiss VAT rates and CHF — so it fits Swiss freelancers and small businesses best. You can still invoice in EUR and other currencies."
+      },
+      "languages": {
+        "q": "Which languages are supported?",
+        "a": "The interface and your invoices are available in German, English, French, Italian, Turkish and Kurdish. You can switch language at any time without losing data."
+      },
+      "data": {
+        "q": "Where is my data stored?",
+        "a": "Your data is stored on Swiss-hosted infrastructure and encrypted in transit. You stay in control and can export your invoices at any time."
+      },
+      "cancel": {
+        "q": "Can I cancel at any time?",
+        "a": "Yes. There is no lock-in and no cancellation fee. You can downgrade to the free plan or cancel whenever you like — your data remains exportable."
+      },
+      "support": {
+        "q": "Do you offer support?",
+        "a": "Yes. As an early-stage product, support comes directly from the founder. Write to us and you will get a real answer, usually within one business day."
+      }
     }
   },
   "errors": {

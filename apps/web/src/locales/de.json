@@ -421,6 +421,7 @@
     "navRegister": "Kostenlos starten",
     "craftedBy": "Entworfen und entwickelt von Atelier Lago in Lugano. Schweizer Handwerk, kompromisslose Qualität.",
     "heroTitle": "QR-Rechnungen für Schweizer Freelancer — in Sekunden",
+    "heroTitleAccent": "in Sekunden",
     "heroSubtitle": "Erstelle standardkonforme QR-Rechnungen, verwalte Kunden und behalte Zahlungen im Blick. Ganz ohne Buchhaltungsstudium.",
     "ctaPrimary": "Kostenlos starten",
     "ctaSecondary": "QR-Generator testen",
@@ -527,6 +528,54 @@
       "total": "Total",
       "ibanHint": "Mit einer Beispiel-IBAN des Gläubigers erstellt. Bei echten Rechnungen wird Ihre eigene IBAN verwendet.",
       "qrMessage": "Rechnung"
+    },
+    "stats": {
+      "languages": "Sprachen",
+      "vatRates": "MWST-Sätze",
+      "setup": "Bis zur ersten Rechnung"
+    },
+    "trust": {
+      "qrStandard": "Schweizer QR-Rechnung (SPC 2026)",
+      "vat": "Alle Schweizer MWST-Sätze integriert",
+      "languages": "6 Sprachen ab Werk",
+      "swissHosted": "In der Schweiz gehostete Daten",
+      "pdf": "Druckfertige PDF-Rechnungen",
+      "reminders": "Automatische Zahlungserinnerungen"
+    },
+    "billing": {
+      "monthly": "Monatlich",
+      "yearly": "Jährlich",
+      "save": "2 Monate gratis",
+      "billedYearly": "jährlich verrechnet",
+      "toggleLabel": "Jährliche Abrechnung umschalten"
+    },
+    "faqTitle": "Häufige Fragen",
+    "faqSubtitle": "Alles, was Sie vor dem Start wissen müssen.",
+    "faq": {
+      "qr": {
+        "q": "Was genau ist eine Schweizer QR-Rechnung?",
+        "a": "Die QR-Rechnung ist der offizielle Schweizer Einzahlungsschein mit QR-Code, der alle Zahlungsdaten enthält. flinkli erzeugt vollständig konforme QR-Rechnungen (Swiss Payment Standards 2026), die Ihre Kunden mit jeder Schweizer Banking-App scannen können."
+      },
+      "swiss": {
+        "q": "Ist flinkli nur für Schweizer Unternehmen?",
+        "a": "flinkli ist rund um die Schweizer Rechnungsstellung gebaut — QR-Rechnungen, Schweizer MWST-Sätze und CHF — und passt daher am besten zu Schweizer Freelancern und Kleinbetrieben. Rechnungen in EUR und anderen Währungen sind trotzdem möglich."
+      },
+      "languages": {
+        "q": "Welche Sprachen werden unterstützt?",
+        "a": "Oberfläche und Rechnungen sind in Deutsch, Englisch, Französisch, Italienisch, Türkisch und Kurdisch verfügbar. Sie können die Sprache jederzeit wechseln, ohne Daten zu verlieren."
+      },
+      "data": {
+        "q": "Wo werden meine Daten gespeichert?",
+        "a": "Ihre Daten liegen auf in der Schweiz gehosteter Infrastruktur und werden bei der Übertragung verschlüsselt. Sie behalten die Kontrolle und können Ihre Rechnungen jederzeit exportieren."
+      },
+      "cancel": {
+        "q": "Kann ich jederzeit kündigen?",
+        "a": "Ja. Keine Bindung, keine Kündigungsgebühr. Sie können jederzeit auf den Gratis-Plan wechseln oder kündigen — Ihre Daten bleiben exportierbar."
+      },
+      "support": {
+        "q": "Bieten Sie Support an?",
+        "a": "Ja. Als junges Produkt kommt der Support direkt vom Gründer. Schreiben Sie uns und Sie erhalten eine echte Antwort, meist innerhalb eines Werktags."
+      }
     }
   },
   "errors": {

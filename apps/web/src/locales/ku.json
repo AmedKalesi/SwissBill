@@ -294,6 +294,7 @@
     "navRegister": "Belaş dest pê bike",
     "craftedBy": "Ji hêla Atelier Lago li Luganoyê ve hat sêwirandin û pêşxistin. Hunera Swîsreyî, kalîteya bê tawîz.",
     "heroTitle": "Fatura QR ji bo frelancerên Swîsreyî — di çend çirkeyan de",
+    "heroTitleAccent": "di çend çirkeyan de",
     "heroSubtitle": "Faturayên li gorî standardan çêbike, mişteriyan birêve bibe û dayînan bişopîne. Bêyî xwendina hesabgiriyê.",
     "ctaPrimary": "Belaş dest pê bike",
     "ctaSecondary": "Afirînerê QR biceribîne",
@@ -400,6 +401,54 @@
       "total": "Giştî",
       "ibanHint": "Bi IBAN-a kredîtorê ya nimûne hatî çêkirin. Faturayên rastîn IBAN-a we bikar tînin.",
       "qrMessage": "Fatura"
+    },
+    "stats": {
+      "languages": "Ziman",
+      "vatRates": "Rêjeyên VAT",
+      "setup": "Heta fatûreya yekem"
+    },
+    "trust": {
+      "qrStandard": "Standarda QR-fatûreya Swîsreyê (SPC 2026)",
+      "vat": "Hemû rêjeyên VAT yên Swîsreyê amade ne",
+      "languages": "6 ziman ji destpêkê ve",
+      "swissHosted": "Daneyên li Swîsreyê têne hilanîn",
+      "pdf": "Fatûreyên PDF yên amade ji bo çapê",
+      "reminders": "Bîranînên dravdanê yên otomatîk"
+    },
+    "billing": {
+      "monthly": "Mehane",
+      "yearly": "Salane",
+      "save": "2 meh belaş",
+      "billedYearly": "salane tê fatûrekirin",
+      "toggleLabel": "Fatûrekirina salane biguhere"
+    },
+    "faqTitle": "Pirsên pir têne pirsîn",
+    "faqSubtitle": "Her tiştê ku berî destpêkirinê divê hûn zanibin.",
+    "faq": {
+      "qr": {
+        "q": "QR-fatûreya Swîsreyê tam çi ye?",
+        "a": "QR-fatûre belgeya dravdanê ya fermî ya Swîsreyê ye ku kodeke QR tê de hemû daneyên dravdanê hildigire. flinkli QR-fatûreyên bi tevahî li gorî standardê (Swiss Payment Standards 2026) çêdike ku xerîdarên we dikarin bi her sepana bankî ya Swîsreyê bişopînin."
+      },
+      "swiss": {
+        "q": "flinkli tenê ji bo karsaziyên Swîsreyê ye?",
+        "a": "flinkli li dora qaîdeyên fatûrekirina Swîsreyê hatiye avakirin — QR-fatûre, rêjeyên VAT yên Swîsreyê û CHF — ji ber vê yekê herî baş ji bo karkerên serbixwe û karsaziyên piçûk ên Swîsreyê ye. Lê hûn dikarin bi EUR û diravên din jî fatûre çêbikin."
+      },
+      "languages": {
+        "q": "Kîjan ziman têne piştgirîkirin?",
+        "a": "Navrû û fatûreyên we bi Almanî, Îngilîzî, Fransî, Îtalî, Tirkî û Kurdî hene. Hûn dikarin her dem ziman biguherînin bêyî ku daneyan winda bikin."
+      },
+      "data": {
+        "q": "Daneyên min li ku têne hilanîn?",
+        "a": "Daneyên we li ser binesaziya ku li Swîsreyê tê hilanîn têne parastin û di dema veguheztinê de têne şîfrekirin. Kontrol dide destê we û hûn dikarin her dem fatûreyên xwe derxînin."
+      },
+      "cancel": {
+        "q": "Ez dikarim her dem betal bikim?",
+        "a": "Erê. Ne mecbûrî û ne jî berdêla betalkirinê heye. Hûn dikarin her dem derbasî plana belaş bibin an betal bikin — daneyên we dikarin bêne derxistin."
+      },
+      "support": {
+        "q": "Hûn piştgirî pêşkêş dikin?",
+        "a": "Erê. Wekî berhemeke di qonaxa destpêkê de, piştgirî rasterast ji damezrîner tê. Ji me re binivîsin û hûn ê bersiveke rastîn bistînin, bi gelemperî di roja kar a yekem de."
+      }
     }
   },
   "errors": {
