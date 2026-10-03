@@ -58,3 +58,65 @@ test('API exposes errors and handles successful no-content deletes', async () =>
   await assert.rejects(api.api.get('/invoices'), (error) => error.status===403 && error.code==='DENIED' && error.message==='Not allowed');
   response=new Response(null,{status:204}); assert.equal(await api.api.delete('/invoices/1'),undefined);
 });
+test('A 401 clears the stored token and dispatches the unauthorized event', async () => {
+  const removed = [];
+  const events = [];
+  const response = new Response(JSON.stringify({error:{code:'UNAUTHORIZED',message:'Token expired'}}), {status:401,headers:{'Content-Type':'application/json'}});
+  const api = await loadModule('../src/lib/api.ts',{
+    localStorage:{getItem:()=> 'stale-token', setItem:()=>{}, removeItem:(key)=>removed.push(key)},
+    fetch:async()=>response,
+    window:{dispatchEvent:(event)=>events.push(event)},
+    CustomEvent:class { constructor(type){ this.type=type; } },
+  });
+  await assert.rejects(api.api.get('/invoices'), (error) => error.status===401 && error.code==='UNAUTHORIZED');
+  assert.deepEqual(removed, ['flinkli.token']);
+  assert.equal(events.length, 1);
+  assert.equal(events[0].type, 'flinkli:unauthorized');
+});
+test('Non-401 failures leave the session token untouched', async () => {
+  const removed = [];
+  const events = [];
+  const response = new Response(JSON.stringify({error:{code:'SERVER',message:'Boom'}}), {status:500,headers:{'Content-Type':'application/json'}});
+  const api = await loadModule('../src/lib/api.ts',{
+    localStorage:{getItem:()=> 'valid-token', setItem:()=>{}, removeItem:(key)=>removed.push(key)},
+    fetch:async()=>response,
+    window:{dispatchEvent:(event)=>events.push(event)},
+    CustomEvent:class { constructor(type){ this.type=type; } },
+  });
+  await assert.rejects(api.api.get('/invoices'), (error) => error.status===500);
+  assert.deepEqual(removed, []);
+  assert.equal(events.length, 0);
+});
+test('Toast auto-dismiss timings keep errors visible longest', async () => {
+  const source = await readFile(new URL('../src/components/ui/Toast.tsx', import.meta.url), 'utf8');
+  const timings = Object.fromEntries([...source.matchAll(/(success|info|error):\s*(\d+)/g)].map(([,variant,ms])=>[variant,Number(ms)]));
+  assert.equal(timings.success, 4000);
+  assert.equal(timings.info, 5000);
+  assert.equal(timings.error, 8000);
+  assert.ok(timings.error > timings.info && timings.info > timings.success);
+});
+test('Every form surfaces success and errors through the toast hook', async () => {
+  const forms = ['customers/CustomerForm','invoices/InvoiceForm','quotes/QuoteForm','expenses/ExpenseForm','projects/ProjectForm','recurring/RecurringForm'];
+  for (const form of forms) {
+    const source = await readFile(new URL(`../src/features/${form}.tsx`, import.meta.url), 'utf8');
+    assert.ok(source.includes('useToast'), `${form} should import useToast`);
+    assert.ok(source.includes('toast.success'), `${form} should emit a success toast`);
+    assert.ok(source.includes('toast.error'), `${form} should emit an error toast`);
+    assert.ok(!source.includes('setError('), `${form} should no longer keep inline error state`);
+  }
+});
+test('EmptyState renders a title and optional description and action', async () => {
+  const source = await readFile(new URL('../src/components/ui/EmptyState.tsx', import.meta.url), 'utf8');
+  assert.ok(source.includes('title'), 'EmptyState should accept a title');
+  assert.ok(source.includes('description'), 'EmptyState should accept a description');
+  assert.ok(source.includes('action'), 'EmptyState should accept an action');
+  assert.ok(source.includes('DEFAULT_ICON'), 'EmptyState should provide a default icon');
+});
+test('ErrorBoundary catches render errors and offers retry and reload', async () => {
+  const source = await readFile(new URL('../src/components/ErrorBoundary.tsx', import.meta.url), 'utf8');
+  assert.ok(source.includes('getDerivedStateFromError'), 'ErrorBoundary should derive state from errors');
+  assert.ok(source.includes('componentDidCatch'), 'ErrorBoundary should report caught errors');
+  assert.ok(source.includes('handleReset'), 'ErrorBoundary should offer a retry handler');
+  assert.ok(source.includes('handleReload'), 'ErrorBoundary should offer a reload handler');
+  assert.ok(source.includes('withTranslation'), 'ErrorBoundary should be i18n-aware');
+});
